@@ -1153,7 +1153,7 @@ var smtpTransport = nodemailer.createTransport({
 
 var mailOptions = {
   from: process.env.GMAIL_USERNAME,
-  to: "Kornarmy@gmail.com, mfilson148@gmail.com",
+  to: "Kornarmy@gmail.com, mfilson148@gmail.com, list@divlink.com",
   //, list@divlink.com",
   subject: "Lake LP",
   generateTextFromHTML: true,
