@@ -789,32 +789,32 @@ try
 
 										//console.log(data);
 										
-										// request = new Request("INSERT INTO LakeCountyProperties with (ROWLOCK) ([Ownername], [Address]) SELECT '"+ data[0].toString()+ "', '"+ data[1].toString()+ "' WHERE NOT EXISTS (SELECT * FROM dbo.LakeCountyProperties WHERE Address = '"+data[1].toString() +"');",
-										// function(err,rowCount)
-										// {
-										// if(err)
-										// {
-										// 	console.log(err);
-										// 	}
-										// 	//console.log(rowCount + ' row(s) returned');
-										// 	dataInserted = rowCount;
-										// });
-										// await connection.execSql(request);
+										request = new Request("INSERT INTO LakeCountyProperties with (ROWLOCK) ([Ownername], [Address]) SELECT '"+ data[0].toString()+ "', '"+ data[1].toString()+ "' WHERE NOT EXISTS (SELECT * FROM dbo.LakeCountyProperties WHERE Address = '"+data[1].toString() +"');",
+										function(err,rowCount)
+										{
+										if(err)
+										{
+											console.log(err);
+											}
+											//console.log(rowCount + ' row(s) returned');
+											dataInserted = rowCount;
+										});
+										await connection.execSql(request);
 								
-										// if(dataInserted > 0)
-										// {
+										if(dataInserted > 0)
+										{
 											var json = {'ownername':data[0],'propertyaddress':data[1],'mailingaddress':OwnerMailing};
 											propertyData.push(json);
-											//podioJson =  {"fields":{"title":data[0],"lead-source":"Lake County","lead-intake-date":intakeDate,"motivation":7,"status-of-lead":14,"next-action":15,"property-address":data[1],"owners-address":OwnerMailing,"estimated-value":{"value":"0","currency":"USD"},"beds-2":"0","baths-2":"0","square-feet":0,"year-built-2":"0","property-taxes-assement":"0","last-sale-price":"0"}};
-											//insertPODIOItem(podioJson);
+											podioJson =  {"fields":{"title":data[0],"lead-source":"Lake County","lead-intake-date":intakeDate,"motivation":7,"status-of-lead":14,"next-action":15,"property-address":data[1],"owners-address":OwnerMailing,"estimated-value":{"value":"0","currency":"USD"},"beds-2":"0","baths-2":"0","square-feet":0,"year-built-2":"0","property-taxes-assement":"0","last-sale-price":"0"}};
+											insertPODIOItem(podioJson);
 											LakeCnt++;
 											
 
-										// }
+										}
 									
-										// await request.on('done', function (rowCount, more, rows) {
-										// 	dataInserted = rowCount;
-										// });
+										await request.on('done', function (rowCount, more, rows) {
+											dataInserted = rowCount;
+										});
 									}
 
 								//await page.waitFor(500);
