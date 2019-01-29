@@ -85,7 +85,7 @@ await page.goto('https://officialrecords.lakecountyclerk.org/search/SearchTypeDo
 // await page2.setUserAgent('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/67.0.3372.0 Safari/537.36');
 // await page2.goto('https://lakecopropappr.com/property-disclaimer.aspx?to=%2fproperty-search.aspx?',{waitUntil: 'networkidle2'});
 
-
+console.log("Started Lake Names");
 await page.waitFor(3000);
 // await page2.waitFor(3000);
 try
@@ -600,7 +600,8 @@ let elements = Array.from(document.querySelectorAll(sel));
 
 try
 {
-
+			console.log("Finished Lake Names");
+			console.log("Starting Lake Property");
 			await page.goto('https://lakecopropappr.com/property-disclaimer.aspx?to=%2fproperty-search.aspx?',{waitUntil: 'networkidle2'});
 			// await page2.bringToFront();
 
@@ -835,6 +836,8 @@ try
 	{
 		console.log(error5);
 	}
+	console.log("Lake Finished with "+ LakeCnt);
+	console.log("Started Brevard Names");
 	await page.goto('https://vaclmweb1.brevardclerk.us/AcclaimWeb/search/SearchTypeDocType',{waitUntil: 'networkidle2'});
 
 	await page.waitFor(3000);
@@ -901,7 +904,7 @@ try
 	
 	await page.click('#btnSearch');
 	
-	await page.waitFor(2000);
+	await page.waitFor(4000);
 	
 	//await page.click('#RsltsGrid > div.t-grid-pager.t-grid-top > div.t-pager.t-reset > div.t-page-size > div > div');
 	//await page.keyboard.press('ArrowDown',{delay:250});
@@ -917,7 +920,7 @@ try
 		  return element? element.innerHTML:null;
 		  }, pageSelector);
 	
-	await page.waitFor(500);
+	await page.waitFor(1000);
 	
 	pageNumber = pageNumber.replace('Page <input type="text" value="1"> of ','');
 	
@@ -1344,10 +1347,10 @@ try
 					lotNumber = 'Lots ' + lotNumber;
 				}
 			}
-			var name = {'firstname':OwnerFirstName,'lastname':OwnerLastName,'lot_number':lotNumber,'county':'brevard','full_legal':legal_result};
+			var name = {'firstname':OwnerFirstName,'lastname':OwnerLastName,'lot_number':lotNumber,'full_legal':legal_result,'county':'brevard'};
 			namesData.push(name);
 			brevardNamesData.push(name);
-			//console.log(name);
+			// console.log(name);
 			
 		
 	
@@ -1355,14 +1358,15 @@ try
 		
 	
 	}
-	
+	console.log("Finished Brevard Names");
+    console.log("Started Brevard Property Search");
 	try
 	{
 	
 				await page.goto('https://www.bcpao.us/PropertySearch/#/nav/Search',{waitUntil: 'networkidle2'});
 				// await page2.bringToFront();
 	
-				await page.waitFor(4000);
+				await page.waitFor(2000);
 	
 				// await page.focus('#ctl00_cphMain_imgBtnSubmit');
 				// await page.click('#ctl00_cphMain_imgBtnSubmit');
@@ -1378,7 +1382,7 @@ try
 						await page.keyboard.type(item.lastname+','+ item.firstname);
 						await page.click('#btnPropertySearch_RealProperty_Go');
 						//await page.waitForNavigation('#ctl00_cphMain_gvParcels > tbody > tr.gv_row');
-						await page.waitFor(2000);
+						await page.waitFor(2500);
 	
 	
 					   
@@ -1568,7 +1572,7 @@ try
 											var data = [OwnerFirstLast,OwnerProperty];
 											var dataInserted;
 	
-											//console.log(data);
+											// console.log(data);
 											
 											request = new Request("INSERT INTO LakeCountyProperties with (ROWLOCK) ([Ownername], [Address]) SELECT '"+ data[0].toString()+ "', '"+ data[1].toString()+ "' WHERE NOT EXISTS (SELECT * FROM dbo.LakeCountyProperties WHERE Address = '"+data[1].toString() +"');",
 											function(err,rowCount)
