@@ -920,7 +920,7 @@ try
 		  return element? element.innerHTML:null;
 		  }, pageSelector);
 	
-	await page.waitFor(1000);
+	await page.waitFor(1500);
 	
 	pageNumber = pageNumber.replace('Page <input type="text" value="1"> of ','');
 	
