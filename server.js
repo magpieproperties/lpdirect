@@ -1449,9 +1449,10 @@ try
 							if(tableRowCnt == 0)
 							{
 								var json = {'FirstName':item.firstname,'LastName':item.lastname,'County':'Brevard','Legal':item.full_legal};
-								nomatchPropertyData.push(json);
+								await nomatchPropertyData.push(json);
+
 								await page.goBack();
-								await page.waitFor(2000);
+								await page.waitFor(1000);
 								await page.focus('#txtPropertySearch_Owner');
 								await page.keyboard.down('Control');
 								await page.keyboard.press('KeyA');
@@ -1620,7 +1621,7 @@ try
 									else
 									{
 										await page.goBack();
-										await page.waitFor(2000);
+										await page.waitFor(3000);
 									}
 								   
 							}
