@@ -1363,7 +1363,7 @@ try
 	try
 	{
 	
-				await page.goto('https://www.bcpao.us/PropertySearch/#/nav/Search',{waitUntil: 'networkidle2'});
+				await page.goto('https://www.bcpao.us/PropertySearch/#/nav/Search',{waitUntil: 'networkidle0'});
 				// await page2.bringToFront();
 	
 				await page.waitFor(2000);
@@ -1377,13 +1377,13 @@ try
 						let legalData = item.full_legal;
 					if(legalData.includes('LT'))
 					{
-						await page.waitFor(2000);
+						await page.waitFor(1000);
 						await page.focus('#txtPropertySearch_Owner');
 						await page.keyboard.type(item.lastname+','+ item.firstname);
-						await page.waitFor(500);
+						// await page.waitFor(1000);
 						await page.click('#btnPropertySearch_RealProperty_Go');
 						//await page.waitForNavigation('#ctl00_cphMain_gvParcels > tbody > tr.gv_row');
-						await page.waitFor(2500);
+						await page.waitFor(2000);
 	
 	
 					   
