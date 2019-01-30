@@ -1366,7 +1366,7 @@ try
 				await page.goto('https://www.bcpao.us/PropertySearch/#/nav/Search',{waitUntil: 'networkidle2'});
 				// await page2.bringToFront();
 	
-				await page.waitFor(2000);
+				await page.waitFor(6000);
 	
 				// await page.focus('#ctl00_cphMain_imgBtnSubmit');
 				// await page.click('#ctl00_cphMain_imgBtnSubmit');
@@ -1572,7 +1572,7 @@ try
 											var data = [OwnerFirstLast,OwnerProperty];
 											var dataInserted;
 	
-											// console.log(data);
+											console.log(data);
 											
 											request = new Request("INSERT INTO LakeCountyProperties with (ROWLOCK) ([Ownername], [Address]) SELECT '"+ data[0].toString()+ "', '"+ data[1].toString()+ "' WHERE NOT EXISTS (SELECT * FROM dbo.LakeCountyProperties WHERE Address = '"+data[1].toString() +"');",
 											function(err,rowCount)
