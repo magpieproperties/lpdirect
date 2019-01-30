@@ -1380,6 +1380,7 @@ try
 						await page.waitFor(2000);
 						await page.focus('#txtPropertySearch_Owner');
 						await page.keyboard.type(item.lastname+','+ item.firstname);
+						await page.waitFor(500);
 						await page.click('#btnPropertySearch_RealProperty_Go');
 						//await page.waitForNavigation('#ctl00_cphMain_gvParcels > tbody > tr.gv_row');
 						await page.waitFor(2500);
