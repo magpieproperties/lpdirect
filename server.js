@@ -1377,7 +1377,7 @@ try
 						let legalData = item.full_legal;
 					if(legalData.includes('LT'))
 					{
-						await page.waitFor(1000);
+						await page.waitFor(2000);
 						await page.focus('#txtPropertySearch_Owner');
 						await page.keyboard.type(item.lastname+','+ item.firstname);
 						await page.click('#btnPropertySearch_RealProperty_Go');
