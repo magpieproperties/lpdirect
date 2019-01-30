@@ -1485,7 +1485,7 @@ try
 										// await page.click('#ctl00_cphMain_gvParcels_ctl02_lView');
 										await page.focus(index);
 										await page.click(index);
-										await page.waitFor(2000);
+										await page.waitFor(3000);
 									}
 									// else
 									// {
