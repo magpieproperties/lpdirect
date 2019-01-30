@@ -1452,7 +1452,7 @@ try
 								var json = {'FirstName':item.firstname,'LastName':item.lastname,'County':'Brevard','Legal':item.full_legal};
 								nomatchPropertyData.push(json);
 								await page.goBack();
-								await page.waitFor(500);
+								await page.waitFor(2000);
 								await page.focus('#txtPropertySearch_Owner');
 								await page.keyboard.down('Control');
 								await page.keyboard.press('KeyA');
