@@ -1363,7 +1363,7 @@ try
 	try
 	{
 	
-				await page.goto('https://www.bcpao.us/PropertySearch/#/nav/Search',{waitUntil: 'networkidle0'});
+				await page.goto('https://www.bcpao.us/PropertySearch/#/nav/Search',{waitUntil: 'networkidle2'});
 				// await page2.bringToFront();
 	
 				await page.waitFor(2000);
@@ -1380,7 +1380,6 @@ try
 						await page.waitFor(1000);
 						await page.focus('#txtPropertySearch_Owner');
 						await page.keyboard.type(item.lastname+','+ item.firstname);
-						// await page.waitFor(1000);
 						await page.click('#btnPropertySearch_RealProperty_Go');
 						//await page.waitForNavigation('#ctl00_cphMain_gvParcels > tbody > tr.gv_row');
 						await page.waitFor(2000);
@@ -1590,7 +1589,7 @@ try
 											if(dataInserted > 0)
 											{
 												var json = {'ownername':data[0],'propertyaddress':data[1],'mailingaddress':OwnerMailing};
-												// console.log(json);
+												console.log(json);
 												propertyData.push(json);
 												podioJson =  {"fields":{"title":data[0],"lead-source":"Brevard County","lead-intake-date":intakeDate,"motivation":7,"status-of-lead":14,"next-action":15,"property-address":data[1],"owners-address":OwnerMailing,"estimated-value":{"value":"0","currency":"USD"},"beds-2":"0","baths-2":"0","square-feet":0,"year-built-2":"0","property-taxes-assement":"0","last-sale-price":"0"}};
 												insertPODIOItem(podioJson);
@@ -1752,14 +1751,14 @@ try
 	await converter.json2csv(nomatchPropertyData, json2csvCallback3);
 
 	await page.waitFor(2000);
-	if(propertyData.length == 0)
-	{
-		sendZeroResultsEmail();
-	}
-	else
-	{
+	// if(propertyData.length == 0)
+	// {
+	// 	sendZeroResultsEmail();
+	// }
+	// else
+	// {
 		await sendTheEmail(fileName,fileName2,fileName3,fileNameLetterOne,fileNameLetterTwo);
-	}
+	// }
 
   	await page.waitFor(1500);
 
@@ -1950,7 +1949,7 @@ var smtpTransport = nodemailer.createTransport({
 
 var mailOptions = {
   from: process.env.GMAIL_USERNAME,
-  to: "Kornarmy@gmail.com, mfilson148@gmail.com, list@divlink.com",
+  to: "Kornarmy@gmail.com, mfilson148@gmail.com",// , list@divlink.com",
   //, list@divlink.com",
   subject: "Lake and Brevard LP",
   generateTextFromHTML: true,
