@@ -1432,11 +1432,11 @@ try
 	
 							//#ctl00_cphMain_gvParcels > tbody > tr:nth-child(3)
 							//#ctl00_cphMain_gvParcels > tbody
-						// 	await page.waitFor(1000);
+							// 	await page.waitFor(1000);
 							//#ctl00_cphMain_gvParcels > tbody > tr.gv_row
 							// let tableRowCnt = tRow1Cnt + tRow2Cnt + tRow3Cnt + tRow4Cnt + tRow5Cnt + 2;
 							//tableRowCnt = tableRowCnt+tableAltCnt;
-							//console.log(tableRowCnt);
+							console.log(tableRowCnt);
 							
 							if(tableRowCnt > 1)
 							{
@@ -1447,20 +1447,7 @@ try
 							}
 	
 	
-							if(tableRowCnt == 0)
-							{
-								var json = {'FirstName':item.firstname,'LastName':item.lastname,'County':'Brevard','Legal':item.full_legal};
-								 nomatchPropertyData.push(json);
-
-								await page.goBack();
-								await page.waitFor(3000);
-								await page.focus('#txtPropertySearch_Owner');
-								await page.keyboard.down('Control');
-								await page.keyboard.press('KeyA');
-								await page.keyboard.up('Control');
-								await page.keyboard.press('Backspace');
-								await page.focus('#txtPropertySearch_Owner');
-							}
+							
 	
 							//tableRowCnt = tableRowCnt + 2;
 	
@@ -1591,7 +1578,7 @@ try
 											if(dataInserted > 0)
 											{
 												var json = {'ownername':data[0],'propertyaddress':data[1],'mailingaddress':OwnerMailing};
-												console.log(json);
+												// console.log(json);
 												propertyData.push(json);
 												podioJson =  {"fields":{"title":data[0],"lead-source":"Brevard County","lead-intake-date":intakeDate,"motivation":7,"status-of-lead":14,"next-action":15,"property-address":data[1],"owners-address":OwnerMailing,"estimated-value":{"value":"0","currency":"USD"},"beds-2":"0","baths-2":"0","square-feet":0,"year-built-2":"0","property-taxes-assement":"0","last-sale-price":"0"}};
 												insertPODIOItem(podioJson);
@@ -1608,10 +1595,11 @@ try
 								   
 									if(tableRowCnt == q)
 									{
-										await page.goBack();
-										await page.waitFor(2000);
+										
+										//await page.goBack();
+										//await page.waitFor(2000);
 										await page.click('#divPropertySearch_TabBar > a:nth-child(1)');
-										await page.waitFor(2000);
+										await page.waitFor(1000);
 										await page.focus('#txtPropertySearch_Owner');
 										await page.keyboard.down('Control');
 										await page.keyboard.press('KeyA');
@@ -1625,7 +1613,21 @@ try
 										await page.waitFor(3000);
 									}
 								   
-							}
+								}
+								if(tableRowCnt == 0)
+								{
+									var json = {'FirstName':item.firstname,'LastName':item.lastname,'County':'Brevard','Legal':item.full_legal};
+									nomatchPropertyData.push(json);
+
+									await page.goBack();
+									await page.waitFor(3000);
+									await page.focus('#txtPropertySearch_Owner');
+									await page.keyboard.down('Control');
+									await page.keyboard.press('KeyA');
+									await page.keyboard.up('Control');
+									await page.keyboard.press('Backspace');
+									await page.focus('#txtPropertySearch_Owner');
+								}
 	
 					}
 				}
