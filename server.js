@@ -598,244 +598,244 @@ let elements = Array.from(document.querySelectorAll(sel));
 
 }
 
-// try
-// {
-// 			console.log("Finished Lake Names");
-// 			console.log("Starting Lake Property");
-// 			await page.goto('https://lakecopropappr.com/property-disclaimer.aspx?to=%2fproperty-search.aspx?',{waitUntil: 'networkidle2'});
-// 			// await page2.bringToFront();
+try
+{
+			console.log("Finished Lake Names");
+			console.log("Starting Lake Property");
+			await page.goto('https://lakecopropappr.com/property-disclaimer.aspx?to=%2fproperty-search.aspx?',{waitUntil: 'networkidle2'});
+			// await page2.bringToFront();
 
-// 			await page.waitFor(2000);
+			await page.waitFor(2000);
 
-// 			await page.focus('#ctl00_cphMain_imgBtnSubmit');
-// 			await page.click('#ctl00_cphMain_imgBtnSubmit');
+			await page.focus('#ctl00_cphMain_imgBtnSubmit');
+			await page.click('#ctl00_cphMain_imgBtnSubmit');
 
-// 			for(var r = 0; r < namesData.length; r++)
-// 			{
-// 					var item = namesData[r];
-// 					let legalData = item.full_legal;
-// 				if(legalData.includes('LT'))
-// 				{
-// 					await page.waitFor(1000);
-// 					await page.focus('#ctl00_cphMain_txtOwnerName');
-// 					await page.keyboard.type(item.lastname+' '+ item.firstname);
-// 					await page.click('#ctl00_cphMain_btnSearch');
-// 					//await page.waitForNavigation('#ctl00_cphMain_gvParcels > tbody > tr.gv_row');
-// 					await page.waitFor(2000);
+			for(var r = 0; r < namesData.length; r++)
+			{
+					var item = namesData[r];
+					let legalData = item.full_legal;
+				if(legalData.includes('LT'))
+				{
+					await page.waitFor(1000);
+					await page.focus('#ctl00_cphMain_txtOwnerName');
+					await page.keyboard.type(item.lastname+' '+ item.firstname);
+					await page.click('#ctl00_cphMain_btnSearch');
+					//await page.waitForNavigation('#ctl00_cphMain_gvParcels > tbody > tr.gv_row');
+					await page.waitFor(2000);
 
 
-// 					// let tRow1Cnt  = await page.evaluate((sel) => {
-// 					// 	let elements = Array.from(document.querySelectorAll(sel));
-// 					// 	return elements.length;
-// 					// 	}, '#ctl00_cphMain_gvParcels_ctl02_lView');
+					// let tRow1Cnt  = await page.evaluate((sel) => {
+					// 	let elements = Array.from(document.querySelectorAll(sel));
+					// 	return elements.length;
+					// 	}, '#ctl00_cphMain_gvParcels_ctl02_lView');
 
-// 					// let tRow2Cnt  = await page.evaluate((sel) => {
-// 					// 		let elements = Array.from(document.querySelectorAll(sel));
-// 					// 		return elements.length;
-// 					// 		}, '#ctl00_cphMain_gvParcels_ctl03_lView');
+					// let tRow2Cnt  = await page.evaluate((sel) => {
+					// 		let elements = Array.from(document.querySelectorAll(sel));
+					// 		return elements.length;
+					// 		}, '#ctl00_cphMain_gvParcels_ctl03_lView');
 
-// 					// let tRow3Cnt  = await page.evaluate((sel) => {
-// 					// 	let elements = Array.from(document.querySelectorAll(sel));
-// 					// 	return elements.length;
-// 					// 	}, '#ctl00_cphMain_gvParcels_ctl04_lView');
+					// let tRow3Cnt  = await page.evaluate((sel) => {
+					// 	let elements = Array.from(document.querySelectorAll(sel));
+					// 	return elements.length;
+					// 	}, '#ctl00_cphMain_gvParcels_ctl04_lView');
 
-// 					// let tRow4Cnt  = await page.evaluate((sel) => {
-// 					// 	let elements = Array.from(document.querySelectorAll(sel));
-// 					// 	return elements.length;
-// 					// 	}, '#ctl00_cphMain_gvParcels_ctl05_lView');
+					// let tRow4Cnt  = await page.evaluate((sel) => {
+					// 	let elements = Array.from(document.querySelectorAll(sel));
+					// 	return elements.length;
+					// 	}, '#ctl00_cphMain_gvParcels_ctl05_lView');
 
-// 					// let tRow5Cnt  = await page.evaluate((sel) => {
-// 					// 	let elements = Array.from(document.querySelectorAll(sel));
-// 					// 	return elements.length;
-// 					// 	}, '#ctl00_cphMain_gvParcels_ctl06_lView');
+					// let tRow5Cnt  = await page.evaluate((sel) => {
+					// 	let elements = Array.from(document.querySelectorAll(sel));
+					// 	return elements.length;
+					// 	}, '#ctl00_cphMain_gvParcels_ctl06_lView');
 	
-// 					//await page.waitFor(500);
+					//await page.waitFor(500);
 
 					
 					
-// 					await page.waitFor(750);
-// 					//await page.waitForNavigation('#ctl00_cphMain_gvParcels');
+					await page.waitFor(750);
+					//await page.waitForNavigation('#ctl00_cphMain_gvParcels');
 
-// 					let tableRowCnt  = await page.evaluate((sel) => {
-// 						let elements = Array.from(document.querySelectorAll(sel));
-// 						return elements.length;
-// 						}, '#ctl00_cphMain_gvParcels > tbody > tr.gv_row');
+					let tableRowCnt  = await page.evaluate((sel) => {
+						let elements = Array.from(document.querySelectorAll(sel));
+						return elements.length;
+						}, '#ctl00_cphMain_gvParcels > tbody > tr.gv_row');
 
-// 					let tableAltCnt  = await page.evaluate((sel) => {
-// 						let elements = Array.from(document.querySelectorAll(sel));
-// 						return elements.length;
-// 						}, '#ctl00_cphMain_gvParcels > tbody > tr.gv_alt');
+					let tableAltCnt  = await page.evaluate((sel) => {
+						let elements = Array.from(document.querySelectorAll(sel));
+						return elements.length;
+						}, '#ctl00_cphMain_gvParcels > tbody > tr.gv_alt');
 
-// 						//#ctl00_cphMain_gvParcels > tbody > tr:nth-child(3)
-// 						//#ctl00_cphMain_gvParcels > tbody
-// 					// 	await page.waitFor(1000);
-// 						//#ctl00_cphMain_gvParcels > tbody > tr.gv_row
-// 						// let tableRowCnt = tRow1Cnt + tRow2Cnt + tRow3Cnt + tRow4Cnt + tRow5Cnt + 2;
-// 						tableRowCnt = tableRowCnt+tableAltCnt;
-// 						//console.log(tableRowCnt);
+						//#ctl00_cphMain_gvParcels > tbody > tr:nth-child(3)
+						//#ctl00_cphMain_gvParcels > tbody
+					// 	await page.waitFor(1000);
+						//#ctl00_cphMain_gvParcels > tbody > tr.gv_row
+						// let tableRowCnt = tRow1Cnt + tRow2Cnt + tRow3Cnt + tRow4Cnt + tRow5Cnt + 2;
+						tableRowCnt = tableRowCnt+tableAltCnt;
+						//console.log(tableRowCnt);
 
-// 						if(tableRowCnt == 0)
-// 						{
-// 							var json = {'FirstName':item.firstname,'LastName':item.lastname,'County':'Lake','Legal':item.full_legal};
-// 							nomatchPropertyData.push(json);
-// 						}
+						if(tableRowCnt == 0)
+						{
+							var json = {'FirstName':item.firstname,'LastName':item.lastname,'County':'Lake','Legal':item.full_legal};
+							nomatchPropertyData.push(json);
+						}
 
-// 						tableRowCnt = tableRowCnt + 2;
+						tableRowCnt = tableRowCnt + 2;
 
-// 						for(let q = 2; q <= tableRowCnt;q++)
-// 					    {
+						for(let q = 2; q <= tableRowCnt;q++)
+					    {
 
 
-// 							let row = '#ctl00_cphMain_gvParcels_ctl0_INDEX_lView';
-// 							let index = row.replace('_INDEX',q);
+							let row = '#ctl00_cphMain_gvParcels_ctl0_INDEX_lView';
+							let index = row.replace('_INDEX',q);
 
-// 							if(q >= 10)
-// 							{
-// 								row = '#ctl00_cphMain_gvParcels_ctl_INDEX_lView';
-// 								index = row.replace('_INDEX',q);
-// 							}
+							if(q >= 10)
+							{
+								row = '#ctl00_cphMain_gvParcels_ctl_INDEX_lView';
+								index = row.replace('_INDEX',q);
+							}
 
-// 							//console.log(index);
-// 							try
-// 							{
-// 								 if(tableRowCnt > 0)
-// 								 {
+							//console.log(index);
+							try
+							{
+								 if(tableRowCnt > 0)
+								 {
 
-// 									// await page.click('#ctl00_cphMain_gvParcels_ctl02_lView');
-// 									await page.focus(index);
-// 									await page.click(index);
-// 									await page.waitFor(1000);
-// 								}
-// 								// else
-// 								// {
-// 									//await page2.goBack();
+									// await page.click('#ctl00_cphMain_gvParcels_ctl02_lView');
+									await page.focus(index);
+									await page.click(index);
+									await page.waitFor(1000);
+								}
+								// else
+								// {
+									//await page2.goBack();
 									
-// 								// }
-// 								//#ctl00_cphMain_gvParcels_ctl03_lView
-// 							}
-// 							catch(error3)
-// 							{
-// 								//console.log(error3);
-// 								//await page.waitFor(500);
-// 								try
-// 								{
-// 									//console.log("Error");
-// 									await page.focus('#ctl00_cphMain_txtOwnerName');
-// 									await page.keyboard.down('Control');
-// 									await page.keyboard.press('KeyA');
-// 									await page.keyboard.up('Control');
-// 									await page.keyboard.press('Backspace');
-// 									await page.focus('#ctl00_cphMain_txtOwnerName');
-// 								}
-// 								catch(error8)
-// 								{
+								// }
+								//#ctl00_cphMain_gvParcels_ctl03_lView
+							}
+							catch(error3)
+							{
+								//console.log(error3);
+								//await page.waitFor(500);
+								try
+								{
+									//console.log("Error");
+									await page.focus('#ctl00_cphMain_txtOwnerName');
+									await page.keyboard.down('Control');
+									await page.keyboard.press('KeyA');
+									await page.keyboard.up('Control');
+									await page.keyboard.press('Backspace');
+									await page.focus('#ctl00_cphMain_txtOwnerName');
+								}
+								catch(error8)
+								{
 
-// 								}
-// 							}
-// 							let propDescriptionResults = '#content > div.property_section_info > table > tbody > tr:nth-child(8) > td.property_item';
-// 							let prop_description = await page.evaluate((sel) => {
-// 								let element = document.querySelector(sel);
-// 								return element? element.innerHTML:'';
-// 								}, propDescriptionResults);
+								}
+							}
+							let propDescriptionResults = '#content > div.property_section_info > table > tbody > tr:nth-child(8) > td.property_item';
+							let prop_description = await page.evaluate((sel) => {
+								let element = document.querySelector(sel);
+								return element? element.innerHTML:'';
+								}, propDescriptionResults);
 
-// 								let	ownerParts;
-// 								let	mailingAddressParts;
-// 								let	propertyAddressParts = [];
-// 								propertyAddressParts.push(0);
-// 								propertyAddressParts.push(0);
-// 								let propertyAddress;
+								let	ownerParts;
+								let	mailingAddressParts;
+								let	propertyAddressParts = [];
+								propertyAddressParts.push(0);
+								propertyAddressParts.push(0);
+								let propertyAddress;
 
-// 								if(prop_description.includes(item.lot_number))
-// 								{
-// 									// let ownerNameSelector = '#content > div.property_section_info > table > tbody > tr:nth-child(1) > td:nth-child(2)'
-// 									// let ownerName = await page2.evaluate((sel) => {
-// 									// 	let element = document.querySelector(sel);
-// 									// 	return element? element.innerHTML:'';
-// 									// 	}, ownerNameSelector);
-// 									// ownerParts = ownerName.split(' ');
-// 									//console.log(ownerParts[1] +' '+ ownerParts[0]);
+								if(prop_description.includes(item.lot_number))
+								{
+									// let ownerNameSelector = '#content > div.property_section_info > table > tbody > tr:nth-child(1) > td:nth-child(2)'
+									// let ownerName = await page2.evaluate((sel) => {
+									// 	let element = document.querySelector(sel);
+									// 	return element? element.innerHTML:'';
+									// 	}, ownerNameSelector);
+									// ownerParts = ownerName.split(' ');
+									//console.log(ownerParts[1] +' '+ ownerParts[0]);
 
-// 									let mailingAddressSelector = '#content > div.property_section_info > table > tbody > tr:nth-child(2) > td:nth-child(2)'
-// 									let mailingAddress = await page.evaluate((sel) => {
-// 										let element = document.querySelector(sel);
-// 										return element? element.innerHTML:'';
-// 										}, mailingAddressSelector);
-// 									mailingAddressParts = mailingAddress.split('<br>');
-// 									//console.log(mailingAddressParts[0]+ ' ' + mailingAddressParts[1]);
+									let mailingAddressSelector = '#content > div.property_section_info > table > tbody > tr:nth-child(2) > td:nth-child(2)'
+									let mailingAddress = await page.evaluate((sel) => {
+										let element = document.querySelector(sel);
+										return element? element.innerHTML:'';
+										}, mailingAddressSelector);
+									mailingAddressParts = mailingAddress.split('<br>');
+									//console.log(mailingAddressParts[0]+ ' ' + mailingAddressParts[1]);
 
-// 									let propertyAddressSelector = '#content > div.property_section_info > table > tbody > tr:nth-child(6) > td:nth-child(2)'
-// 									propertyAddress = await page.evaluate((sel) => {
-// 										let element = document.querySelector(sel);
-// 										return element? element.innerHTML:'';
-// 										}, propertyAddressSelector);
-// 									propertyAddressParts = propertyAddress.split('<br>');
-// 									//console.log(propertyAddressParts[0]+ ' ' + propertyAddressParts[1]);
+									let propertyAddressSelector = '#content > div.property_section_info > table > tbody > tr:nth-child(6) > td:nth-child(2)'
+									propertyAddress = await page.evaluate((sel) => {
+										let element = document.querySelector(sel);
+										return element? element.innerHTML:'';
+										}, propertyAddressSelector);
+									propertyAddressParts = propertyAddress.split('<br>');
+									//console.log(propertyAddressParts[0]+ ' ' + propertyAddressParts[1]);
 								
 
-// 										let OwnerFirstLast = item.firstname + ' ' + item.lastname;
-// 										let OwnerProperty = '';
-// 										let OwnerMailing = '';
+										let OwnerFirstLast = item.firstname + ' ' + item.lastname;
+										let OwnerProperty = '';
+										let OwnerMailing = '';
 
-// 										if(propertyAddress != '')
-// 										{
-// 										OwnerProperty = propertyAddressParts[0]+ ' ' + propertyAddressParts[1];
-// 										}
-// 										if(mailingAddress != '')
-// 										{
-// 											OwnerMailing = mailingAddressParts[0]+ ' ' + mailingAddressParts[1];
-// 										}
+										if(propertyAddress != '')
+										{
+										OwnerProperty = propertyAddressParts[0]+ ' ' + propertyAddressParts[1];
+										}
+										if(mailingAddress != '')
+										{
+											OwnerMailing = mailingAddressParts[0]+ ' ' + mailingAddressParts[1];
+										}
 
-// 										var data = [OwnerFirstLast,OwnerProperty];
-// 										var dataInserted;
+										var data = [OwnerFirstLast,OwnerProperty];
+										var dataInserted;
 
-// 										//console.log(data);
+										//console.log(data);
 										
-// 										request = new Request("INSERT INTO LakeCountyProperties with (ROWLOCK) ([Ownername], [Address]) SELECT '"+ data[0].toString()+ "', '"+ data[1].toString()+ "' WHERE NOT EXISTS (SELECT * FROM dbo.LakeCountyProperties WHERE Address = '"+data[1].toString() +"');",
-// 										function(err,rowCount)
-// 										{
-// 										if(err)
-// 										{
-// 											console.log(err);
-// 											}
-// 											//console.log(rowCount + ' row(s) returned');
-// 											dataInserted = rowCount;
-// 										});
-// 										await connection.execSql(request);
+										request = new Request("INSERT INTO LakeCountyProperties with (ROWLOCK) ([Ownername], [Address]) SELECT '"+ data[0].toString()+ "', '"+ data[1].toString()+ "' WHERE NOT EXISTS (SELECT * FROM dbo.LakeCountyProperties WHERE Address = '"+data[1].toString() +"');",
+										function(err,rowCount)
+										{
+										if(err)
+										{
+											console.log(err);
+											}
+											//console.log(rowCount + ' row(s) returned');
+											dataInserted = rowCount;
+										});
+										await connection.execSql(request);
 								
-// 										if(dataInserted > 0)
-// 										{
-// 											var json = {'ownername':data[0],'propertyaddress':data[1],'mailingaddress':OwnerMailing};
-// 											propertyData.push(json);
-// 											podioJson =  {"fields":{"title":data[0],"lead-source":"Lake County","lead-intake-date":intakeDate,"motivation":7,"status-of-lead":14,"next-action":15,"property-address":data[1],"owners-address":OwnerMailing,"estimated-value":{"value":"0","currency":"USD"},"beds-2":"0","baths-2":"0","square-feet":0,"year-built-2":"0","property-taxes-assement":"0","last-sale-price":"0"}};
-// 											insertPODIOItem(podioJson);
-// 											LakeCnt++;
+										if(dataInserted > 0)
+										{
+											var json = {'ownername':data[0],'propertyaddress':data[1],'mailingaddress':OwnerMailing};
+											propertyData.push(json);
+											podioJson =  {"fields":{"title":data[0],"lead-source":"Lake County","lead-intake-date":intakeDate,"motivation":7,"status-of-lead":14,"next-action":15,"property-address":data[1],"owners-address":OwnerMailing,"estimated-value":{"value":"0","currency":"USD"},"beds-2":"0","baths-2":"0","square-feet":0,"year-built-2":"0","property-taxes-assement":"0","last-sale-price":"0"}};
+											insertPODIOItem(podioJson);
+											LakeCnt++;
 											
 
-// 										}
+										}
 									
-// 										await request.on('done', function (rowCount, more, rows) {
-// 											dataInserted = rowCount;
-// 										});
-// 									}
+										await request.on('done', function (rowCount, more, rows) {
+											dataInserted = rowCount;
+										});
+									}
 
-// 								//await page.waitFor(500);
-// 								await page.goBack();
-// 								await page.waitFor(1000);
-// 								await page.focus('#ctl00_cphMain_txtOwnerName');
-// 								await page.keyboard.down('Control');
-// 								await page.keyboard.press('KeyA');
-// 								await page.keyboard.up('Control');
-// 								await page.keyboard.press('Backspace');
-// 								await page.focus('#ctl00_cphMain_txtOwnerName');
-// 						}
+								//await page.waitFor(500);
+								await page.goBack();
+								await page.waitFor(1000);
+								await page.focus('#ctl00_cphMain_txtOwnerName');
+								await page.keyboard.down('Control');
+								await page.keyboard.press('KeyA');
+								await page.keyboard.up('Control');
+								await page.keyboard.press('Backspace');
+								await page.focus('#ctl00_cphMain_txtOwnerName');
+						}
 
-// 				}
-// 			}
-// 	}
-// 	catch(error5)
-// 	{
-// 		console.log(error5);
-// 	}
+				}
+			}
+	}
+	catch(error5)
+	{
+		console.log(error5);
+	}
 	console.log("Lake Finished with "+ LakeCnt);
 	console.log("Started Brevard Names");
 	await page.goto('https://vaclmweb1.brevardclerk.us/AcclaimWeb/search/SearchTypeDocType',{waitUntil: 'networkidle2'});
@@ -1366,7 +1366,7 @@ let elements = Array.from(document.querySelectorAll(sel));
 				await page.goto('https://www.bcpao.us/PropertySearch/#/nav/Search',{waitUntil: 'networkidle2'});
 				// await page2.bringToFront();
 	
-				await page.waitFor(6000);
+				await page.waitFor(4000);
 	
 				// await page.focus('#ctl00_cphMain_imgBtnSubmit');
 				// await page.click('#ctl00_cphMain_imgBtnSubmit');
@@ -1379,7 +1379,7 @@ let elements = Array.from(document.querySelectorAll(sel));
 					{
 						await page.waitFor(1000);
 						await page.focus('#txtPropertySearch_Owner');
-						await page.keyboard.type(item.lastname+','+ item.firstname);
+						await page.keyboard.type(item.lastname +','+ item.firstname);
 						await page.click('#btnPropertySearch_RealProperty_Go');
 						//await page.waitForNavigation('#ctl00_cphMain_gvParcels > tbody > tr.gv_row');
 						await page.waitFor(2000);
@@ -1416,7 +1416,7 @@ let elements = Array.from(document.querySelectorAll(sel));
 	
 						
 						
-						await page.waitFor(750);
+							await page.waitFor(750);
 						//await page.waitForNavigation('#ctl00_cphMain_gvParcels');
 	
 						let tableRowCnt  = await page.evaluate((sel) => {
@@ -1424,6 +1424,7 @@ let elements = Array.from(document.querySelectorAll(sel));
 							return elements.length;
 							}, '#tblSearchResults > tbody > tr');
 	
+							await page.waitFor(750);
 							// let tableAltCnt  = await page.evaluate((sel) => {
 							// 	let elements = Array.from(document.querySelectorAll(sel));
 							// 	return elements.length;
@@ -1449,7 +1450,7 @@ let elements = Array.from(document.querySelectorAll(sel));
 							if(tableRowCnt == 0)
 							{
 								var json = {'FirstName':item.firstname,'LastName':item.lastname,'County':'Brevard','Legal':item.full_legal};
-								await nomatchPropertyData.push(json);
+								 nomatchPropertyData.push(json);
 
 								await page.goBack();
 								await page.waitFor(3000);
@@ -1463,12 +1464,12 @@ let elements = Array.from(document.querySelectorAll(sel));
 	
 							//tableRowCnt = tableRowCnt + 2;
 	
-							for(let q = 1; q <= tableRowCnt;q++)
+							for(let q = 1; q <= tableRowCnt; q++)
 							{
 	
 								
 								let row = '#tblSearchResults > tbody > tr:nth-child(_INDEX) > td:nth-child(3)';
-								let index = row.replace('_INDEX',q);
+								let index = row.replace('_INDEX', q);
 	
 								// if(q >= 10)
 								// {
@@ -1601,9 +1602,9 @@ let elements = Array.from(document.querySelectorAll(sel));
 											await request.on('done', function (rowCount, more, rows) {
 												dataInserted = rowCount;
 											});
-										}   
+									}   
 	
-									//await page.waitFor(500);
+									await page.waitFor(500);
 								   
 									if(tableRowCnt == q)
 									{
@@ -1752,14 +1753,14 @@ let elements = Array.from(document.querySelectorAll(sel));
 	await converter.json2csv(nomatchPropertyData, json2csvCallback3);
 
 	await page.waitFor(2000);
-	// if(propertyData.length == 0)
-	// {
-	// 	sendZeroResultsEmail();
-	// }
-	// else
-	// {
+	if(propertyData.length == 0)
+	{
+		sendZeroResultsEmail();
+	}
+	else
+	{
 		await sendTheEmail(fileName,fileName2,fileName3,fileNameLetterOne,fileNameLetterTwo);
-	// }
+	}
 
   	await page.waitFor(1500);
 
@@ -1950,7 +1951,7 @@ var smtpTransport = nodemailer.createTransport({
 
 var mailOptions = {
   from: process.env.GMAIL_USERNAME,
-  to: "Kornarmy@gmail.com, mfilson148@gmail.com",// , list@divlink.com",
+  to: "Kornarmy@gmail.com, mfilson148@gmail.com, list@divlink.com",
   //, list@divlink.com",
   subject: "Lake and Brevard LP",
   generateTextFromHTML: true,
