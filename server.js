@@ -838,6 +838,8 @@ try
 	}
 	console.log("Lake Finished with "+ LakeCnt);
 	console.log("Started Brevard Names");
+	try
+	{
 	await page.goto('https://vaclmweb1.brevardclerk.us/AcclaimWeb/search/SearchTypeDocType',{waitUntil: 'networkidle2'});
 
 	await page.waitFor(3000);
@@ -904,7 +906,7 @@ try
 	
 	await page.click('#btnSearch');
 	
-	await page.waitFor(4000);
+	await page.waitFor(5000);
 	
 	//await page.click('#RsltsGrid > div.t-grid-pager.t-grid-top > div.t-pager.t-reset > div.t-page-size > div > div');
 	//await page.keyboard.press('ArrowDown',{delay:250});
@@ -1358,6 +1360,12 @@ try
 		
 	
 	}
+}
+catch(brevardError)
+{
+	console.log(brevardError);
+}
+
 	console.log("Finished Brevard Names");
     console.log("Started Brevard Property Search");
 	try
