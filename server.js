@@ -1609,8 +1609,10 @@ try
 									}
 									else
 									{
-										await page.goBack();
-										await page.waitFor(3000);
+										// await page.goBack();
+										await page.click('#divPropertySearch_TabBar > a.cssPropertySearchTabsLink.cssActiveTab');
+										//#divPropertySearch_TabBar > a.cssPropertySearchTabsLink.cssActiveTab
+										await page.waitFor(1000);
 									}
 								   
 								}
