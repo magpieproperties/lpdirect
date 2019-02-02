@@ -1609,12 +1609,15 @@ catch(brevardError)
 								   
 									if(tableRowCnt == q)
 									{
-										
-										await page.goBack();
-										await page.waitFor(500);
-										if(tableRowCnt > 1)
+										if(tableRowCnt == 1)
 										{
-
+											await page.goBack();
+											await page.waitFor(500);
+										}
+										else if(tableRowCnt > 1)
+										{
+											await page.goBack();
+											await page.waitFor(1000);
 											await page.goBack();
 											await page.waitFor(1000);
 										}
