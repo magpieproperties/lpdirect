@@ -704,7 +704,7 @@ try
 									// await page.click('#ctl00_cphMain_gvParcels_ctl02_lView');
 									await page.focus(index);
 									await page.click(index);
-									await page.waitFor(1000);
+									await page.waitFor(1500);
 								}
 								// else
 								// {
@@ -818,7 +818,7 @@ try
 										});
 									}
 
-								//await page.waitFor(500);
+								await page.waitFor(500);
 								await page.goBack();
 								await page.waitFor(1000);
 								await page.focus('#ctl00_cphMain_txtOwnerName');
