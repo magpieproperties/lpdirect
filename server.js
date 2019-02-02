@@ -881,11 +881,13 @@ try
 		// await page.keyboard.type('12/31/2018'),{delay:1000};
 		await page.keyboard.type(dateString),{delay:1000};
 
+		await page.waitFor(1000);
 
 		await page.focus('#DocTypesDisplay-input');
 		await page.keyboard.type('LIS PENDENS (LP)');
 		await page.keyboard.type('\n');
-	
+		
+		await page.focus('#btnSearch');
 	   
 	}
 	catch(error)
