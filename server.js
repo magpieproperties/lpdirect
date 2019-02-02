@@ -1610,16 +1610,17 @@ catch(brevardError)
 									if(tableRowCnt == q)
 									{
 										
-										// await page.goBack();
+										await page.goBack();
+										await page.waitFor(500);
+										if(tableRowCnt > 1)
+										{
+
+											await page.goBack();
+											await page.waitFor(1000);
+										}
+										// await page.focus('#divPropertySearch_TabBar > a:nth-child(1)');
+										// await page.click('#divPropertySearch_TabBar > a:nth-child(1)');
 										// await page.waitFor(1000);
-										// if(tableRowCnt > 1)
-										// {
-										// 	await page.goBack();
-										// 	await page.waitFor(1000);
-										// }
-										await page.focus('#divPropertySearch_TabBar > a:nth-child(1)');
-										await page.click('#divPropertySearch_TabBar > a:nth-child(1)');
-										await page.waitFor(1000);
 										await page.focus('#txtPropertySearch_Owner');
 										await page.keyboard.down('Control');
 										await page.keyboard.press('KeyA');
