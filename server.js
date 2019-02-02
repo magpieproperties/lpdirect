@@ -1645,19 +1645,19 @@ catch(brevardError)
 									// }
 									if(tableRowCnt == q)
 									{
-										await page.goBack();
-										await page.waitFor(2000);
-										// await page.click('#divPropertySearch_TabBar > a:nth-child(1)');
-										// await page.waitFor(500);
-
-										if(q > 1)
-										{
-											console.log("Test");
-											await page.goBack();
-											await page.waitFor(2000);
-										}
-										// await page.click('#divPropertySearch_TabBar > a:nth-child(1)');
+										// await page.goBack();
 										// await page.waitFor(2000);
+										await page.click('#divPropertySearch_TabBar > a:nth-child(2)');
+										await page.waitFor(2000);
+
+										// if(tableRowCnt > 1)
+										// {
+										// 	console.log("Test");
+										// 	await page.goBack();
+										// 	await page.waitFor(2000);
+										// }
+										await page.click('#divPropertySearch_TabBar > a:nth-child(1)');
+										await page.waitFor(2000);
 										await page.focus('#txtPropertySearch_Owner');
 										await page.keyboard.down('Control');
 										await page.keyboard.press('KeyA');
