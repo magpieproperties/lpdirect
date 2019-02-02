@@ -1623,9 +1623,10 @@ catch(brevardError)
 									}
 									else
 									{
-										//await page.goBack();
+										await page.goBack();
+										// #liNavMain_1 > a
 										//#divPropertySearch_TabBar > a:nth-child(2)
-										await page.click('#divPropertySearch_TabBar > a:nth-child(2)');
+										// await page.click('#divPropertySearch_TabBar > a:nth-child(2)');
 										await page.waitFor(1000);
 									}
 								   
@@ -1914,7 +1915,7 @@ var smtpTransport = nodemailer.createTransport({
 
 	var mailOptions = {
 	  from: process.env.GMAIL_USERNAME,
-	  to: "Kornarmy@gmail.com, mfilson148@gmail.com",
+	  to: "Kornarmy@gmail.com",//, mfilson148@gmail.com",
 	  subject: "Lake County and Brevard LP Mailer list No Results",
 	  generateTextFromHTML: true,
 	  html: "<b>Lake County Found zero results today.</b>",
@@ -1975,11 +1976,11 @@ var smtpTransport = nodemailer.createTransport({
 
 var mailOptions = {
   from: process.env.GMAIL_USERNAME,
-  to: "Kornarmy@gmail.com, mfilson148@gmail.com, list@divlink.com",
+  to: "Kornarmy@gmail.com",//, mfilson148@gmail.com, list@divlink.com",
   //, list@divlink.com",
   subject: "Lake and Brevard LP",
   generateTextFromHTML: true,
-  html: "<b>Lake County and Brevard County LIS PENDONS From the machines!</b>",
+  html: "<b>Lake County and Brevard County LIS PENDENS From the machines!</b>",
   attachments: [{   filename: fileName,// file on disk as an attachment
 					content: csvNames }
 				,{filename: fileName2,
