@@ -788,7 +788,7 @@ try
 										var data = [OwnerFirstLast,OwnerProperty];
 										var dataInserted;
 
-										// console.log(data);
+										console.log(data);
 										
 										request = new Request("INSERT INTO LakeCountyProperties with (ROWLOCK) ([Ownername], [Address]) SELECT '"+ data[0].toString()+ "', '"+ data[1].toString()+ "' WHERE NOT EXISTS (SELECT * FROM dbo.LakeCountyProperties WHERE Address = '"+data[1].toString() +"');",
 										function(err,rowCount)
@@ -842,7 +842,7 @@ try
 	{
 	await page.goto('https://vaclmweb1.brevardclerk.us/AcclaimWeb/search/SearchTypeDocType',{waitUntil: 'networkidle2'});
 
-	await page.waitFor(8000);
+	await page.waitFor(3000);
 	// await page2.waitFor(3000);
 	try
 	{
@@ -863,6 +863,25 @@ try
 	
 	try
 	{
+		await page.focus('#RecordDateFrom');
+		await page.keyboard.down('Control');
+		await page.keyboard.press('KeyA');
+		await page.keyboard.up('Control');
+		await page.keyboard.press('Backspace');
+		
+		// await page.keyboard.type('11/01/2018'),{delay:1000};
+		await page.keyboard.type(dateFirstDayString),{delay:1000};
+		
+		await page.focus('#RecordDateTo',{delay:2000});
+		await page.keyboard.down('Control');
+		await page.keyboard.press('KeyA');
+		await page.keyboard.up('Control');
+		await page.keyboard.press('Backspace');
+		
+		// await page.keyboard.type('12/31/2018'),{delay:1000};
+		await page.keyboard.type(dateString),{delay:1000};
+
+
 		await page.focus('#DocTypesDisplay-input');
 		await page.keyboard.type('LIS PENDENS (LP)');
 		await page.keyboard.type('\n');
@@ -873,47 +892,12 @@ try
 	{
 		console.log(error);
 	}
-	
-	// d = new Date();
-	 
-	  
-	// dateString = formatDate(d);
-	// dateFirstDayString = formatDateFirstOfMonth(d);
-	// dateStringFile = formatDateFile(d);
-	// dateFirstDayStringFile = formatDateFirstOfMonthFile(d);
-	// intakeDate = formatIntakeDate(d);
-	// const sourceData = formatSource(d);
-	
-	await page.focus('#RecordDateFrom');
-	await page.keyboard.down('Control');
-	await page.keyboard.press('KeyA');
-	await page.keyboard.up('Control');
-	await page.keyboard.press('Backspace');
-	
-	// await page.keyboard.type('11/01/2018'),{delay:1000};
-	await page.keyboard.type(dateFirstDayString),{delay:1000};
-	  
-	await page.focus('#RecordDateTo',{delay:2000});
-	await page.keyboard.down('Control');
-	await page.keyboard.press('KeyA');
-	await page.keyboard.up('Control');
-	await page.keyboard.press('Backspace');
-	  
-	// await page.keyboard.type('12/31/2018'),{delay:1000};
-	await page.keyboard.type(dateString),{delay:1000};
-	
-	await page.waitFor(1000);
+
+	// await page.waitFor(1000);
 	
 	await page.click('#btnSearch');
 	
-	await page.waitFor(5000);
-	
-	//await page.click('#RsltsGrid > div.t-grid-pager.t-grid-top > div.t-pager.t-reset > div.t-page-size > div > div');
-	//await page.keyboard.press('ArrowDown',{delay:250});
-	//await page.keyboard.press('ArrowDown',{delay:250});
-	//await page.click('body > div:nth-child(11) > div > ul > li:nth-child(2)');
-	
-	//#RsltsGrid > div.t-grid-pager.t-grid-top > div.t-pager.t-reset > div.t-page-size > div > div > span.t-select > span
+	await page.waitFor(4000);
 	
 	pageSelector = '#RsltsGrid > div.t-grid-pager.t-grid-top > div.t-pager.t-reset > div.t-page-i-of-n';
 	
@@ -922,7 +906,7 @@ try
 		  return element? element.innerHTML:null;
 		  }, pageSelector);
 	
-	await page.waitFor(1500);
+	await page.waitFor(500);
 	
 	pageNumber = pageNumber.replace('Page <input type="text" value="1"> of ','');
 	
@@ -1363,6 +1347,8 @@ try
 }
 catch(brevardError)
 {
+	await page.screenshot({path: 'errorData.jpg', fullPage: true});
+	await sendErrorEmail();
 	console.log(brevardError);
 }
 
@@ -1987,6 +1973,67 @@ var mailOptions = {
           			content:  buf }
           		,{filename: fileNameLetterTwo,
             		content:  buf2 }]
+};
+
+smtpTransport.sendMail(mailOptions, function(error, response) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(response);
+  }
+  smtpTransport.close();
+});
+	
+};
+
+function sendErrorEmail()
+{
+	
+// Set the refresh token
+oauth2Client.setCredentials({
+	refresh_token: process.env.GMAIL_REFRESH_TOKEN
+});
+
+//Initialize an access token variable
+let accessToken = "";
+
+//Get the access token
+oauth2Client.refreshAccessToken(function(err,tokens)
+{
+if(err) 
+{
+    console.log(err);
+  } 
+  else 
+  {
+    console.log(accessToken);
+  }
+	accessToken = tokens.access_token;
+});
+
+var smtpTransport = nodemailer.createTransport({
+    host:"smtp.gmail.com",
+	port: 465,
+	secure: true,
+	auth:{
+      type: "OAuth2",
+      user: process.env.GMAIL_USERNAME,
+	  clientId: process.env.GMAIL_CLIENTID,
+	  clientSecret: process.env.GMAIL_SECRET,
+      refreshToken: process.env.GMAIL_REFRESH_TOKEN,
+	  accessToken: accessToken
+    }
+});
+
+var mailOptions = {
+  from: process.env.GMAIL_USERNAME,
+  to: "Kornarmy@gmail.com",
+  subject: "Lake County Direct Error",
+  generateTextFromHTML: false,
+  text: "Error screenshot\n",
+  attachments: [{path : (path.resolve(__dirname,'errorData.jpg'))
+  }]
+  
 };
 
 smtpTransport.sendMail(mailOptions, function(error, response) {
