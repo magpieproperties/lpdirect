@@ -1463,7 +1463,7 @@ catch(brevardError)
 								await page.focus('#Results_PerPage > select');
 								await page.keyboard.press('ArrowDown',{delay:250});
 								await page.keyboard.press('ArrowDown',{delay:250});
-								await page.keyboard.press('ArrowDown',{delay:250});
+								// await page.keyboard.press('ArrowDown',{delay:250});
 							}
 	
 	
@@ -1478,13 +1478,13 @@ catch(brevardError)
 								let row = '#tblSearchResults > tbody > tr:nth-child(_INDEX) > td:nth-child(3)';
 								let index = row.replace('_INDEX', q);
 	
-								//console.log(index);
+								console.log(index);
 								try
 								{
 									 if(tableRowCnt > 1)
 									 {
 										// await page.click('#ctl00_cphMain_gvParcels_ctl02_lView');
-										await page.focus(index);
+										//await page.focus(index);
 										await page.click(index);
 										await page.waitFor(3000);
 									}
@@ -1623,8 +1623,9 @@ catch(brevardError)
 									else
 									{
 										//await page.goBack();
+										//#divPropertySearch_TabBar > a:nth-child(2)
 										await page.click('#divPropertySearch_TabBar > a:nth-child(2)');
-										await page.waitFor(500);
+										await page.waitFor(1000);
 									}
 								   
 								}
