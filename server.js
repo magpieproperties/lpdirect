@@ -1645,17 +1645,19 @@ catch(brevardError)
 									// }
 									if(tableRowCnt == q)
 									{
-										await page.goto('https://www.bcpao.us/PropertySearch/#/nav/Search',{waitUntil: 'networkidle2'});
-										// await page.goBack();
+										// await page.goto('https://www.bcpao.us/PropertySearch/#/nav/Search',{waitUntil: 'networkidle2'});
+										await page.goBack();
 										await page.waitFor(2000);
-										// await page.click('#divPropertySearch_TabBar > a:nth-child(1)');
-										// await page.waitFor(2000);
-										// await page.focus('#txtPropertySearch_Owner');
-										// await page.keyboard.down('Control');
-										// await page.keyboard.press('KeyA');
-										// await page.keyboard.up('Control');
-										// await page.keyboard.press('Backspace');
-										// await page.focus('#txtPropertySearch_Owner');
+										await page.click('#divPropertySearch_TabBar > a:nth-child(1)');
+										await page.waitFor(500);
+										await page.click('#divPropertySearch_TabBar > a:nth-child(1)');
+										await page.waitFor(2000);
+										await page.focus('#txtPropertySearch_Owner');
+										await page.keyboard.down('Control');
+										await page.keyboard.press('KeyA');
+										await page.keyboard.up('Control');
+										await page.keyboard.press('Backspace');
+										await page.focus('#txtPropertySearch_Owner');
 
 									}
 									else
