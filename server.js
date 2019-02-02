@@ -74,7 +74,7 @@ connection.on('connect', function(err)
 	}
 );
 
-const browser = await puppeteer.launch({headless:true,args:['--no-sandbox','--disable-setuid-sandbox','--ignore-certificate-errors','--disable-gpu','--window-size=1000,800',"--proxy-server='direct://'",'--proxy-bypass-list=*','--enable-features=NetworkService']},{sloMo: 350}, {ignoreHTTPSErrors: true});
+const browser = await puppeteer.launch({headless:false,args:['--no-sandbox','--disable-setuid-sandbox','--ignore-certificate-errors','--disable-gpu','--window-size=1000,800',"--proxy-server='direct://'",'--proxy-bypass-list=*','--enable-features=NetworkService']},{sloMo: 350}, {ignoreHTTPSErrors: true});
 
 const page = await browser.newPage();
 //const page2 = await browser.newPage();
@@ -788,7 +788,7 @@ try
 										var data = [OwnerFirstLast,OwnerProperty];
 										var dataInserted;
 
-										//console.log(data);
+										console.log(data);
 										
 										request = new Request("INSERT INTO LakeCountyProperties with (ROWLOCK) ([Ownername], [Address]) SELECT '"+ data[0].toString()+ "', '"+ data[1].toString()+ "' WHERE NOT EXISTS (SELECT * FROM dbo.LakeCountyProperties WHERE Address = '"+data[1].toString() +"');",
 										function(err,rowCount)
@@ -1445,6 +1445,20 @@ catch(brevardError)
 							// let tableRowCnt = tRow1Cnt + tRow2Cnt + tRow3Cnt + tRow4Cnt + tRow5Cnt + 2;
 							//tableRowCnt = tableRowCnt+tableAltCnt;
 							console.log(tableRowCnt);
+							if(tableRowCnt == 0)
+							{
+								var json = {'FirstName':item.firstname,'LastName':item.lastname,'County':'Brevard','Legal':item.full_legal};
+								nomatchPropertyData.push(json);
+
+								// await page.goBack();
+								// await page.waitFor(3000);
+								// await page.focus('#txtPropertySearch_Owner');
+								// await page.keyboard.down('Control');
+								// await page.keyboard.press('KeyA');
+								// await page.keyboard.up('Control');
+								// await page.keyboard.press('Backspace');
+								// await page.focus('#txtPropertySearch_Owner');
+							}
 							
 							if(tableRowCnt > 1)
 							{
@@ -1466,18 +1480,11 @@ catch(brevardError)
 								let row = '#tblSearchResults > tbody > tr:nth-child(_INDEX) > td:nth-child(3)';
 								let index = row.replace('_INDEX', q);
 	
-								// if(q >= 10)
-								// {
-								// 	row = '#ctl00_cphMain_gvParcels_ctl_INDEX_lView';
-								// 	index = row.replace('_INDEX',q);
-								// }
-	
 								//console.log(index);
 								try
 								{
 									 if(tableRowCnt > 1)
 									 {
-	
 										// await page.click('#ctl00_cphMain_gvParcels_ctl02_lView');
 										await page.focus(index);
 										await page.click(index);
@@ -1617,28 +1624,30 @@ catch(brevardError)
 									}
 									else
 									{
-										// await page.goBack();
-										await page.click('#divPropertySearch_TabBar > a.cssPropertySearchTabsLink.cssActiveTab');
-										//#divPropertySearch_TabBar > a.cssPropertySearchTabsLink.cssActiveTab
-										await page.waitFor(1000);
+										//await page.goBack();
+										await page.click('#divPropertySearch_TabBar > a:nth-child(2)');
+										await page.waitFor(500);
 									}
 								   
 								}
 								if(tableRowCnt == 0)
 								{
-									var json = {'FirstName':item.firstname,'LastName':item.lastname,'County':'Brevard','Legal':item.full_legal};
-									nomatchPropertyData.push(json);
-
-									await page.goBack();
-									await page.waitFor(3000);
-									await page.focus('#txtPropertySearch_Owner');
-									await page.keyboard.down('Control');
-									await page.keyboard.press('KeyA');
-									await page.keyboard.up('Control');
-									await page.keyboard.press('Backspace');
-									await page.focus('#txtPropertySearch_Owner');
+										await page.click('#divPropertySearch_TabBar > a:nth-child(1)');
+										await page.waitFor(1000);
+										await page.focus('#txtPropertySearch_Owner');
+										await page.keyboard.down('Control');
+										await page.keyboard.press('KeyA');
+										await page.keyboard.up('Control');
+										await page.keyboard.press('Backspace');
+										await page.focus('#txtPropertySearch_Owner');
 								}
+							
 	
+					}
+					else
+					{
+						var json = {'FirstName':item.firstname,'LastName':item.lastname,'County':'Brevard','Legal':item.full_legal};
+						nomatchPropertyData.push(json);
 					}
 				}
 		}
