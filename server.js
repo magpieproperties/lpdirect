@@ -788,7 +788,7 @@ try
 										var data = [OwnerFirstLast,OwnerProperty];
 										var dataInserted;
 
-										console.log(data);
+										// console.log(data);
 										
 										request = new Request("INSERT INTO LakeCountyProperties with (ROWLOCK) ([Ownername], [Address]) SELECT '"+ data[0].toString()+ "', '"+ data[1].toString()+ "' WHERE NOT EXISTS (SELECT * FROM dbo.LakeCountyProperties WHERE Address = '"+data[1].toString() +"');",
 										function(err,rowCount)
@@ -842,7 +842,7 @@ try
 	{
 	await page.goto('https://vaclmweb1.brevardclerk.us/AcclaimWeb/search/SearchTypeDocType',{waitUntil: 'networkidle2'});
 
-	await page.waitFor(3000);
+	await page.waitFor(5000);
 	// await page2.waitFor(3000);
 	try
 	{
