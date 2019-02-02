@@ -868,7 +868,7 @@ try
 
 		await page.focus('#DocTypesDisplay-input');
 		await page.keyboard.type('LIS PENDENS (LP)');
-		await page.keyboard.type('\n');
+		// await page.keyboard.type('\n');
 		
 		// await page.focus('#btnSearch');
 		let errorScreen = await page.evaluate((sel) => {
@@ -876,9 +876,11 @@ try
 			  return elements.length;
 			}, '#ErrorWin > div.t-window-titlebar.t-header > div > a > span');
 		
+		await page.waitFor(500);
+
 	   if(errorScreen > 0)
 	   {
-		   await page.click('#ErrorWin > div.t-window-titlebar.t-header > div > a > span');
+		   await page.click('#ErrorWin > div.t-window-titlebar.t-header > div > a');
 	   }
 	}
 	catch(error)
