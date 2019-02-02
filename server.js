@@ -1478,13 +1478,13 @@ catch(brevardError)
 								let row = '#tblSearchResults > tbody > tr:nth-child(_INDEX) > td:nth-child(3)';
 								let index = row.replace('_INDEX', q);
 	
-								console.log(index);
+								// console.log(index);
 								try
 								{
 									 if(tableRowCnt > 1)
 									 {
 										// await page.click('#ctl00_cphMain_gvParcels_ctl02_lView');
-										//await page.focus(index);
+										await page.focus(index);
 										await page.click(index);
 										await page.waitFor(3000);
 									}
@@ -1557,7 +1557,8 @@ catch(brevardError)
 										//propertyAddressParts = propertyAddress.split(' ');
 										//console.log(propertyAddressParts[0]+ ' ' + propertyAddressParts[1]);
 									
-	
+											await page.waitFor(500);
+
 											let OwnerFirstLast = item.firstname + ' ' + item.lastname;
 											let OwnerProperty = '';
 											let OwnerMailing = '';
