@@ -863,39 +863,47 @@ try
 	
 	try
 	{
-		await page.focus('#RecordDateFrom');
-		await page.keyboard.down('Control');
-		await page.keyboard.press('KeyA');
-		await page.keyboard.up('Control');
-		await page.keyboard.press('Backspace');
-		
-		// await page.keyboard.type('11/01/2018'),{delay:1000};
-		await page.keyboard.type(dateFirstDayString),{delay:1000};
-		
-		await page.focus('#RecordDateTo',{delay:2000});
-		await page.keyboard.down('Control');
-		await page.keyboard.press('KeyA');
-		await page.keyboard.up('Control');
-		await page.keyboard.press('Backspace');
-		
-		// await page.keyboard.type('12/31/2018'),{delay:1000};
-		await page.keyboard.type(dateString),{delay:1000};
-
+	
 		await page.waitFor(1000);
 
 		await page.focus('#DocTypesDisplay-input');
 		await page.keyboard.type('LIS PENDENS (LP)');
 		await page.keyboard.type('\n');
 		
-		await page.focus('#btnSearch');
-	   
+		// await page.focus('#btnSearch');
+		let errorScreen = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			  return elements.length;
+			}, '#ErrorWin > div.t-window-titlebar.t-header > div > a > span');
+		
+	   if(errorScreen > 0)
+	   {
+		   await page.click('#ErrorWin > div.t-window-titlebar.t-header > div > a > span');
+	   }
 	}
 	catch(error)
 	{
 		console.log(error);
 	}
 
-	// await page.waitFor(1000);
+	await page.focus('#RecordDateFrom');
+	await page.keyboard.down('Control');
+	await page.keyboard.press('KeyA');
+	await page.keyboard.up('Control');
+	await page.keyboard.press('Backspace');
+	
+	// await page.keyboard.type('11/01/2018'),{delay:1000};
+	await page.keyboard.type(dateFirstDayString),{delay:1000};
+	
+	await page.focus('#RecordDateTo',{delay:2000});
+	await page.keyboard.down('Control');
+	await page.keyboard.press('KeyA');
+	await page.keyboard.up('Control');
+	await page.keyboard.press('Backspace');
+	
+	// await page.keyboard.type('12/31/2018'),{delay:1000};
+	await page.keyboard.type(dateString),{delay:1000};
+
 	
 	await page.click('#btnSearch');
 	
@@ -1641,7 +1649,10 @@ catch(brevardError)
 		}
 		catch(error5)
 		{
+			await page.screenshot({path: 'errorData.jpg', fullPage: true});
+			await sendErrorEmail();
 			console.log(error5);
+
 		}
 
 	var fileName = 'Names ' + dateFirstDayStringFile + ' to ' + dateStringFile + ' LP.csv';
