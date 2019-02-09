@@ -15,7 +15,8 @@ var namesData = [];
 var propertyData = [];
 var nomatchPropertyData = [];
 var brevardNamesData = [];
-
+var marionNamesData = [];
+var marionMap = new Map();
 
 var csvNames = null;
 var csvProperty = null;
@@ -26,6 +27,7 @@ var buf2 = null;
 
 var LakeCnt = 0;
 var BrevardCnt = 0;
+var MarionCnt = 0;
 var podioJson = null;
 
 let {google} = require('googleapis');
@@ -1588,6 +1590,966 @@ catch(brevardError)
 			console.log(error5);
 
 		}
+		console.log("Brevard Finished with "+ BrevardCnt);
+	    console.log("Started Marion Names");
+		try{
+			await page.goto('http://216.255.240.38/wb_or1/or_sch_1.asp',{waitUntil: 'networkidle2'});
+		
+			await page.waitFor(3000);
+			// await page2.waitFor(3000);
+			try
+			{
+				await page.click('#window1 > table > tbody > tr > td > table > tbody > tr:nth-child(1) > td:nth-child(3) > a');
+				// await page.keyboard.type('\n');
+		
+			}
+			catch(error2)
+			{
+				console.log(error2);
+			} 
+		
+			await page.waitFor(4000);
+		
+			try
+			{
+				await page.focus('#window2 > table > tbody > tr > td > table > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(1) > td > form > font:nth-child(6) > input[type="text"]');
+				await page.keyboard.type('LP');
+				// await page.keyboard.type('\n');
+		
+			
+			}
+			catch(error)
+			{
+				console.log(error);
+			}
+		
+		
+			
+			// const sourceData = formatSource(d);
+		
+			await page.focus('#window2 > table > tbody > tr > td > table > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(1) > td > form > table > tbody > tr > td:nth-child(1) > font:nth-child(5) > input[type="text"]');
+			await page.keyboard.down('Control');
+			await page.keyboard.press('KeyA');
+			await page.keyboard.up('Control');
+			await page.keyboard.press('Backspace');
+		
+			// await page.keyboard.type('02/04/2019'),{delay:1000};
+			await page.keyboard.type(dateFirstDayString),{delay:1000};
+			
+			await page.focus('#window2 > table > tbody > tr > td > table > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(1) > td > form > table > tbody > tr > td:nth-child(1) > font:nth-child(8) > input[type="text"]',{delay:2000});
+			await page.keyboard.down('Control');
+			await page.keyboard.press('KeyA');
+			await page.keyboard.up('Control');
+			await page.keyboard.press('Backspace');
+			
+			// await page.keyboard.type('12/31/2018'),{delay:1000};
+			await page.keyboard.type(dateString),{delay:1000};
+		
+			await page.click('#window2 > table > tbody > tr > td > table > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(1) > td > form > table > tbody > tr > td:nth-child(3) > font:nth-child(4) > select:nth-child(1)');
+			await page.keyboard.press('ArrowDown',{delay:250});
+			await page.keyboard.press('ArrowDown',{delay:250});
+			await page.keyboard.type('\n');
+		
+			await page.click('#window2 > table > tbody > tr > td > table > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(1) > td > form > table > tbody > tr > td:nth-child(3) > font:nth-child(4) > select:nth-child(3)');
+			await page.keyboard.press('ArrowDown',{delay:250});
+			await page.keyboard.press('ArrowDown',{delay:250});
+			await page.keyboard.type('\n');
+		
+		
+		
+		
+			await page.waitFor(1000);
+		
+			await page.click('#window2 > table > tbody > tr > td > table > tbody > tr:nth-child(3) > td > table > tbody > tr:nth-child(1) > td > form > input[type="button"]:nth-child(7)');
+		
+			await page.waitFor(4000);
+		
+		
+		
+			//await page.click('#RsltsGrid > div.t-grid-pager.t-grid-top > div.t-pager.t-reset > div.t-page-size > div > div');
+			//await page.keyboard.press('ArrowDown',{delay:250});
+			//await page.keyboard.press('ArrowDown',{delay:250});
+			//await page.click('body > div:nth-child(11) > div > ul > li:nth-child(2)');
+		
+			//#RsltsGrid > div.t-grid-pager.t-grid-top > div.t-pager.t-reset > div.t-page-size > div > div > span.t-select > span
+		
+			pageSelector = 'body > form > table:nth-child(3) > tbody > tr:nth-child(3) > td:nth-child(2) > font > select > option:nth-child(1)';
+		
+			pageNumber = await page.evaluate((sel) => {
+				let element = document.querySelector(sel);
+				return element? element.innerHTML:null;
+				}, pageSelector);
+		
+			await page.waitFor(500);
+		
+			pageNumber = pageNumber.replace('1 of ','');
+		
+			// console.log(pageNumber);
+		
+			await page.waitFor(1000);
+		
+			pageGridOne = 'body > form > table:nth-child(4) > tbody > tr:nth-child(INDEX_2) > td:nth-child(8) > a > font'
+			//pageGridOne = pageGridSelector.replace("INDEX",pageGridId);
+			pageGridOneRow1 = pageGridOne.replace("INDEX_2","2");
+			pageGridOneRow2 = pageGridOne.replace("INDEX_2","3");
+			pageGridOneRow3 = pageGridOne.replace("INDEX_2","4");
+			pageGridOneRow4 = pageGridOne.replace("INDEX_2","5");
+			pageGridOneRow5 = pageGridOne.replace("INDEX_2","6");
+			pageGridOneRow6 = pageGridOne.replace("INDEX_2","7");
+			pageGridOneRow7 = pageGridOne.replace("INDEX_2","8");
+			pageGridOneRow8 = pageGridOne.replace("INDEX_2","9");
+			pageGridOneRow9 = pageGridOne.replace("INDEX_2","10");
+			pageGridOneRow10 = pageGridOne.replace("INDEX_2","11");
+			pageGridOneRow11 = pageGridOne.replace("INDEX_2","12");
+			pageGridOneRow12 = pageGridOne.replace("INDEX_2","13");
+			pageGridOneRow13 = pageGridOne.replace("INDEX_2","14");
+			pageGridOneRow14 = pageGridOne.replace("INDEX_2","15");
+			pageGridOneRow15 = pageGridOne.replace("INDEX_2","16");
+			pageGridOneRow16 = pageGridOne.replace("INDEX_2","17");
+			pageGridOneRow17 = pageGridOne.replace("INDEX_2","18");
+			pageGridOneRow18 = pageGridOne.replace("INDEX_2","19");
+			pageGridOneRow19 = pageGridOne.replace("INDEX_2","20");
+			pageGridOneRow20 = pageGridOne.replace("INDEX_2","21");
+			pageGridOneRow21 = pageGridOne.replace("INDEX_2","22");
+			pageGridOneRow22 = pageGridOne.replace("INDEX_2","23");
+			pageGridOneRow23 = pageGridOne.replace("INDEX_2","24");
+			pageGridOneRow24 = pageGridOne.replace("INDEX_2","25");
+			pageGridOneRow25 = pageGridOne.replace("INDEX_2","26");
+			pageGridOneRow26 = pageGridOne.replace("INDEX_2","27");
+			pageGridOneRow27 = pageGridOne.replace("INDEX_2","28");
+			pageGridOneRow28 = pageGridOne.replace("INDEX_2","29");
+			pageGridOneRow29 = pageGridOne.replace("INDEX_2","30");
+			pageGridOneRow30 = pageGridOne.replace("INDEX_2","31");
+			pageGridOneRow31 = pageGridOne.replace("INDEX_2","32");
+			pageGridOneRow32 = pageGridOne.replace("INDEX_2","33");
+			pageGridOneRow33 = pageGridOne.replace("INDEX_2","34");
+			pageGridOneRow34 = pageGridOne.replace("INDEX_2","35");
+			pageGridOneRow35 = pageGridOne.replace("INDEX_2","36");
+			pageGridOneRow36 = pageGridOne.replace("INDEX_2","37");
+			pageGridOneRow37 = pageGridOne.replace("INDEX_2","38");
+			pageGridOneRow38 = pageGridOne.replace("INDEX_2","39");
+			pageGridOneRow39 = pageGridOne.replace("INDEX_2","40");
+			pageGridOneRow40 = pageGridOne.replace("INDEX_2","41");
+			pageGridOneRow41 = pageGridOne.replace("INDEX_2","42");
+			pageGridOneRow42 = pageGridOne.replace("INDEX_2","43");
+			pageGridOneRow43 = pageGridOne.replace("INDEX_2","44");
+			pageGridOneRow44 = pageGridOne.replace("INDEX_2","45");
+			pageGridOneRow45 = pageGridOne.replace("INDEX_2","46");
+			pageGridOneRow46 = pageGridOne.replace("INDEX_2","47");
+			pageGridOneRow47 = pageGridOne.replace("INDEX_2","48");
+			pageGridOneRow48 = pageGridOne.replace("INDEX_2","49");
+			pageGridOneRow49 = pageGridOne.replace("INDEX_2","50");
+			pageGridOneRow50 = pageGridOne.replace("INDEX_2","51");
+		
+			pageNumber = pageNumber-1;
+			
+			for (let i = 0; i <= pageNumber ; i++) 
+			{
+		
+			if(i > 0)
+			{ 
+				//body > form > strong > font > a:nth-child(2)
+				if(i == 1)
+				{
+					await page.focus('body > form > strong > font > a',{delay:1000});
+					await page.click('body > form > strong > font > a',{delay:1000});
+				}
+				else
+				{
+					await page.focus('body > form > strong > font > a:nth-child(2)',{delay:1000});
+					await page.click('body > form > strong > font > a:nth-child(2)',{delay:1000});
+				}
+				await page.waitFor(1000);
+		
+			}
+		
+			boxResult1  = await page.evaluate((sel) => {
+				let elements = Array.from(document.querySelectorAll(sel));
+				return elements.length;
+			}, pageGridOneRow1);
+			//console.log(boxResult1);
+		
+			boxResult2  = await page.evaluate((sel) => {
+				let elements = Array.from(document.querySelectorAll(sel));
+					return elements.length;
+			}, pageGridOneRow2);
+			//console.log(boxResult2);
+		
+			boxResult3  = await page.evaluate((sel) => {
+				let elements = Array.from(document.querySelectorAll(sel));
+					return elements.length;
+			}, pageGridOneRow3);
+			//console.log(boxResult3);
+		
+			boxResult4  = await page.evaluate((sel) => {
+				let elements = Array.from(document.querySelectorAll(sel));
+				return elements.length;
+			}, pageGridOneRow4);
+			//console.log(boxResult4);
+		
+			boxResult5  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+				return elements.length;
+			}, pageGridOneRow5);
+			//console.log(boxResult5);
+		
+			boxResult6  = await page.evaluate((sel) => {
+				let elements = Array.from(document.querySelectorAll(sel));
+					return elements.length;
+			}, pageGridOneRow6);
+			//console.log(boxResult6);
+		
+			boxResult7  = await page.evaluate((sel) => {
+				let elements = Array.from(document.querySelectorAll(sel));
+				return elements.length;
+			}, pageGridOneRow7);
+			//console.log(boxResult7);
+		
+			boxResult8  = await page.evaluate((sel) => {
+				let elements = Array.from(document.querySelectorAll(sel));
+				return elements.length;
+			}, pageGridOneRow8);
+			//console.log(boxResult8);
+		
+			boxResult9  = await page.evaluate((sel) => {
+				let elements = Array.from(document.querySelectorAll(sel));
+				return elements.length;
+			}, pageGridOneRow9);
+			//console.log(boxResult9);
+		
+			boxResult10  = await page.evaluate((sel) => {
+				let elements = Array.from(document.querySelectorAll(sel));
+				return elements.length;
+			}, pageGridOneRow10);
+			//console.log(boxResult10);
+		
+			boxResult11  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			return elements.length;
+			}, pageGridOneRow11);
+			//console.log(boxResult1);
+		
+			boxResult12  = await page.evaluate((sel) => {
+				let elements = Array.from(document.querySelectorAll(sel));
+					return elements.length;
+			}, pageGridOneRow12);
+			//console.log(boxResult2);
+		
+			boxResult13  = await page.evaluate((sel) => {
+				let elements = Array.from(document.querySelectorAll(sel));
+					return elements.length;
+			}, pageGridOneRow13);
+			//console.log(boxResult3);
+		
+			boxResult14  = await page.evaluate((sel) => {
+				let elements = Array.from(document.querySelectorAll(sel));
+				return elements.length;
+			}, pageGridOneRow14);
+			//console.log(boxResult4);
+		
+			boxResult15  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+				return elements.length;
+			}, pageGridOneRow15);
+			//console.log(boxResult5);
+		
+			boxResult16  = await page.evaluate((sel) => {
+				let elements = Array.from(document.querySelectorAll(sel));
+					return elements.length;
+			}, pageGridOneRow16);
+			//console.log(boxResult6);
+		
+			boxResult17  = await page.evaluate((sel) => {
+				let elements = Array.from(document.querySelectorAll(sel));
+				return elements.length;
+			}, pageGridOneRow17);
+			//console.log(boxResult7);
+		
+			boxResult18  = await page.evaluate((sel) => {
+				let elements = Array.from(document.querySelectorAll(sel));
+				return elements.length;
+			}, pageGridOneRow18);
+			//console.log(boxResult8);
+		
+			boxResult19  = await page.evaluate((sel) => {
+				let elements = Array.from(document.querySelectorAll(sel));
+				return elements.length;
+			}, pageGridOneRow19);
+			//console.log(boxResult9);
+		
+			boxResult20  = await page.evaluate((sel) => {
+				let elements = Array.from(document.querySelectorAll(sel));
+				return elements.length;
+			}, pageGridOneRow20);
+			//console.log(boxResult10);
+		
+			boxResult21  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			return elements.length;
+			}, pageGridOneRow21);
+			//console.log(boxResult1);
+		
+			boxResult22  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+				return elements.length;
+			}, pageGridOneRow22);
+			//console.log(boxResult2);
+		
+			boxResult23  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+				return elements.length;
+			}, pageGridOneRow23);
+			//console.log(boxResult3);
+		
+			boxResult24  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			return elements.length;
+			}, pageGridOneRow24);
+			//console.log(boxResult4);
+		
+			boxResult25  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			return elements.length;
+			}, pageGridOneRow25);
+			//console.log(boxResult5);
+		
+			boxResult26  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+				return elements.length;
+			}, pageGridOneRow26);
+			//console.log(boxResult6);
+		
+			boxResult27  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			return elements.length;
+			}, pageGridOneRow27);
+			//console.log(boxResult7);
+		
+			boxResult28  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			return elements.length;
+			}, pageGridOneRow28);
+			//console.log(boxResult8);
+		
+			boxResult29  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			return elements.length;
+			}, pageGridOneRow29);
+			//console.log(boxResult9);
+		
+			boxResult30  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			return elements.length;
+			}, pageGridOneRow30);
+			//console.log(boxResult10);
+		
+			boxResult31  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			return elements.length;
+			}, pageGridOneRow31);
+			//console.log(boxResult1);
+		
+			boxResult32  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+				return elements.length;
+			}, pageGridOneRow32);
+			//console.log(boxResult2);
+		
+			boxResult33  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+				return elements.length;
+			}, pageGridOneRow33);
+			//console.log(boxResult3);
+		
+			boxResult34  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			return elements.length;
+			}, pageGridOneRow34);
+			//console.log(boxResult4);
+		
+			boxResult35  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			return elements.length;
+			}, pageGridOneRow35);
+			//console.log(boxResult5);
+		
+			boxResult36  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+				return elements.length;
+			}, pageGridOneRow36);
+			//console.log(boxResult6);
+		
+			boxResult37  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			return elements.length;
+			}, pageGridOneRow37);
+			//console.log(boxResult7);
+		
+			boxResult38  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			return elements.length;
+			}, pageGridOneRow38);
+			//console.log(boxResult8);
+		
+			boxResult39  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			return elements.length;
+			}, pageGridOneRow39);
+			//console.log(boxResult9);
+		
+			boxResult40  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			return elements.length;
+			}, pageGridOneRow40);
+			//console.log(boxResult10);
+		
+			boxResult41  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			return elements.length;
+			}, pageGridOneRow41);
+			//console.log(boxResult1);
+		
+			boxResult42  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+				return elements.length;
+			}, pageGridOneRow42);
+			//console.log(boxResult2);
+		
+			boxResult43  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+				return elements.length;
+			}, pageGridOneRow43);
+			//console.log(boxResult3);
+		
+			boxResult44  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			return elements.length;
+			}, pageGridOneRow44);
+			//console.log(boxResult4);
+		
+			boxResult45  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			return elements.length;
+			}, pageGridOneRow45);
+			//console.log(boxResult5);
+		
+			boxResult46  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+				return elements.length;
+			}, pageGridOneRow46);
+			//console.log(boxResult6);
+		
+			boxResult47  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			return elements.length;
+			}, pageGridOneRow47);
+			//console.log(boxResult7);
+		
+			boxResult48  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			return elements.length;
+			}, pageGridOneRow48);
+			//console.log(boxResult8);
+		
+			boxResult49  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			return elements.length;
+			}, pageGridOneRow49);
+			//console.log(boxResult9);
+		
+			boxResult50  = await page.evaluate((sel) => {
+			let elements = Array.from(document.querySelectorAll(sel));
+			return elements.length;
+			}, pageGridOneRow50);
+		
+				boxNumbers = (boxResult1+boxResult2+boxResult3+boxResult4+boxResult5+boxResult6+boxResult7+boxResult8+boxResult9+boxResult10+
+				boxResult11+boxResult12+boxResult13+boxResult14+boxResult15+boxResult16+boxResult17+boxResult18+boxResult19+boxResult20+
+				boxResult21+boxResult22+boxResult23+boxResult24+boxResult25+boxResult26+boxResult27+boxResult28+boxResult29+boxResult30+
+				boxResult31+boxResult32+boxResult33+boxResult34+boxResult35+boxResult36+boxResult37+boxResult38+boxResult39+boxResult40+
+				boxResult41+boxResult42+boxResult43+boxResult44+boxResult45+boxResult46+boxResult47+boxResult48+boxResult49+boxResult50
+			);
+				boxNumbers  = boxNumbers -1;
+		
+				let links = 'body > form > table:nth-child(4) > tbody > tr:nth-child(INDEX_2) > td:nth-child(1) > font > a'
+				let recordNumer = 'body > table:nth-child(3) > tbody > tr > td:nth-child(2) > table:nth-child(9) > tbody > tr:nth-child(2) > td.details_des_plain';
+				nameResults = '#RsltsGrid > div.t-grid-content > table > tbody > tr:nth-child(INDEX_2) > td:nth-child(4)'
+				legalResults = 'body > table:nth-child(3) > tbody > tr > td:nth-child(2) > table:nth-child(9) > tbody > tr:nth-child(8) > td.details_des_plain';
+				let granteeList = 'body > table:nth-child(3) > tbody > tr > td:nth-child(2) > table:nth-child(9) > tbody > tr:nth-child(INDEX) > td.details_des_plain > dl > dt';
+			
+		
+				let docID = '';
+				let file_num = '';
+				let webAddres = 'http://216.255.240.38/wb_or1/details_des.asp?doc_id=INDEX&amp;file_num=INDEX_2&amp;linked=&amp;party_seq=';
+				for (let i = 0; i <= boxNumbers ; i++) 
+				{
+		
+					let nameSelector = nameResults.replace("INDEX_2",(i+1));
+					let legalSelector = legalResults.replace("INDEX_2",(i+2));
+					let linksSelector = links.replace("INDEX_2",(i+2));
+					var grantessList = [];
+		
+					let frame_result = await page.evaluate((sel) => {
+						return document.querySelector(sel).getAttribute('href');
+					}, linksSelector);
+		
+					//console.log(frame_result);
+					let linkSplit = frame_result.split('=');
+					//console.log(linkSplit);
+		
+					let doc = linkSplit[1].split('&');
+					let file = linkSplit[2].split('&'); 
+		
+					docID = doc[0];
+					file_num = file[0];
+					//   console.log(docID);
+					//   console.log(file_num);
+					let linkAddress = webAddres.replace('INDEX',docID);
+					let finalAddress = linkAddress.replace('INDEX_2',file_num);
+						
+						await page.goto(finalAddress);
+						await page.waitFor(500);
+						
+		
+							let recordCnt  = await page.evaluate((sel) => {
+							let elements = Array.from(document.querySelectorAll(sel));
+							return elements.length;
+							}, 'body > table:nth-child(3) > tbody > tr > td:nth-child(2) > table:nth-child(9) > tbody > tr');
+		
+							let granteeList2 = granteeList.replace('INDEX',recordCnt);
+		
+							let granteesListCount  = await page.evaluate((sel) => {
+							let elements = Array.from(document.querySelectorAll(sel));
+							return elements.length;
+							}, granteeList2);
+		
+					
+		
+							for (let g = 1; g <= granteesListCount ; g++) 
+							{	
+								let name = 'body > table:nth-child(3) > tbody > tr > td:nth-child(2) > table:nth-child(9) > tbody > tr:nth-child(REPLACE) > td.details_des_plain > dl > dt:nth-child(INDEX)';
+								let currentName = name.replace('INDEX',g);
+								// console.log(recordCnt);
+								let finalName = currentName.replace('REPLACE',(recordCnt));
+		
+								let nameResult = await page.evaluate((sel) => {
+									let element = document.querySelector(sel);
+									return element? element.innerHTML:'';
+									}, finalName);
+		
+								let currentName2 = nameResult.split('<dt>');
+		
+								let currentName3 = currentName2[0].split('&');
+		
+								grantessList.push(currentName3[0]);
+							}
+						let recordNumber_result = await page.evaluate((sel) => {
+							let element = document.querySelector(sel);
+							return element? element.innerHTML:'';
+							}, recordNumer);
+						
+		
+						
+		
+						let legal_result = await page.evaluate((sel) => {
+							let element = document.querySelector(sel);
+							return element? element.innerHTML:'';
+							}, legalResults);
+		
+							if(marionMap.has(recordNumber_result))
+							{
+								// console.log('no add');
+							}
+							else
+							{
+								marionMap.set(recordNumber_result,legal_result);
+								var legalPart = legal_result.split(' ');
+								var lotNumber = "";
+								
+								for(let j = 0;j < legalPart.length;j++)
+								{
+									if(legalPart[j] == 'LT')
+									{
+										lotNumber = legalPart[(j+1)];
+										lotNumber = 'LOT ' + lotNumber;
+									}
+									else if(legalPart[j] == 'LTS')
+									{
+										lotNumber = legalPart[(j+1)];
+										lotNumber = 'Lots ' + lotNumber;
+									}
+								}
+		
+								for(let e = 0;e < grantessList.length;e++)
+								{
+									if(grantessList[e].includes('MARION COUNTY'))
+									{
+										
+									}
+									else if(grantessList[e] == 'UNITED STATES OF AMERICA')
+									{
+		
+									}
+									else if(grantessList[e] == 'HOUSING ')
+									{
+		
+									}
+									else if(grantessList[e] == 'FORD MOTOR CREDIT COMPANY')
+									{
+		
+									}
+									else if(granteeList[e].includes('BANK'))
+									{
+		
+									}
+									else if(granteeList[e].includes('LLC'))
+									{
+		
+									}
+									else if(granteeList[e].includes('INC'))
+									{
+		
+									}
+									else if(granteeList[e].includes('PAYPAL'))
+									{
+		
+									}
+									else
+									{
+											var name = {'name':grantessList[e],'full_legal':legal_result,'lot_number':lotNumber,'county':'marion'};
+											marionNamesData.push(name);
+											var nameBigList = {'firstname':'','lastname':grantessList[e],'full_legal':legal_result,'lot_number':lotNumber,'county':'marion'};
+											namesData.push(nameBigList);
+											// console.log(name);
+										break;
+									}
+		
+									
+								}
+		
+								
+								
+							}
+					
+							
+					// console.log(grantessList);
+					// console.log(legal_result);
+					// console.log(recordNumber_result);
+		
+					// var OwnerParts = name_result.split(',');
+		
+					// var OwnerFirstName = "";
+					// var OwnerLastName = "";
+		
+					// OwnerFirstName = OwnerParts[1];
+					// OwnerLastName = OwnerParts[0];
+		
+					
+					
+					await page.goBack();
+		
+				}
+				
+				// console.log(namesData);
+			}
+		}
+		catch(marionError)
+		{
+			await page.screenshot({path: 'errorData.jpg', fullPage: true});
+			await sendErrorEmail();
+			console.log(marionError);
+		}
+		console.log("Finished Marion Names");
+		console.log("Started Marion Property Search");
+		try
+		{
+		
+					await page.goto('https://www.pa.marion.fl.us/PropertySearch.aspx',{waitUntil: 'networkidle2'});
+					// await page2.bringToFront();
+		
+					await page.waitFor(2000);
+		
+					// await page.focus('#ctl00_cphMain_imgBtnSubmit');
+					// await page.click('#ctl00_cphMain_imgBtnSubmit');
+		
+					for(var r = 0; r < marionNamesData.length; r++)
+					{
+							var item = marionNamesData[r];
+							let legalData = item.full_legal;
+						if(legalData.includes('LT'))
+						{
+							// await page.waitFor(1000);
+							await page.focus('#MCPAMaster_MCPAContent_txtParm');
+							await page.keyboard.type(item.name);
+							await page.click('#MCPAMaster_MCPAContent_btnWine');
+							await page.waitFor(1000);
+		
+		
+							
+							// await page.waitFor(750);
+							
+							let tableRowCnt  = await page.evaluate((sel) => {
+								let elements = Array.from(document.querySelectorAll(sel));
+								return elements.length;
+								}, '#srch > table.mctable > tbody > tr');
+		
+								// let tableAltCnt  = await page.evaluate((sel) => {
+								// 	let elements = Array.from(document.querySelectorAll(sel));
+								// 	return elements.length;
+								// 	}, '#ctl00_cphMain_gvParcels > tbody > tr.gv_alt');
+		
+								//#ctl00_cphMain_gvParcels > tbody > tr:nth-child(3)
+								//#ctl00_cphMain_gvParcels > tbody
+							// 	await page.waitFor(1000);
+								//#ctl00_cphMain_gvParcels > tbody > tr.gv_row
+								// let tableRowCnt = tRow1Cnt + tRow2Cnt + tRow3Cnt + tRow4Cnt + tRow5Cnt + 2;
+								//tableRowCnt = tableRowCnt+tableAltCnt;
+								console.log(tableRowCnt);
+								
+								// if(tableRowCnt > 1)
+								// {
+								//     await page.focus('#Results_PerPage > select');
+								//     await page.keyboard.press('ArrowDown',{delay:250});
+								//     await page.keyboard.press('ArrowDown',{delay:250});
+								//     await page.keyboard.press('ArrowDown',{delay:250});
+								// }
+		
+		
+								if(tableRowCnt == 0)
+								{
+									var json = {'FirstName':'','LastName':item.name,'County':'Marion','Legal':item.full_legal};
+									nomatchPropertyData.push(json);
+								   
+									// await page.goBack();
+									// await page.waitFor(500);
+									await page.focus('#MCPAMaster_MCPAContent_txtParm');
+									await page.keyboard.down('Control');
+									await page.keyboard.press('KeyA');
+									await page.keyboard.up('Control');
+									await page.keyboard.press('Backspace');
+									await page.focus('#MCPAMaster_MCPAContent_txtParm');
+		
+								}
+		
+								//tableRowCnt = tableRowCnt + 2;
+		
+								for(let q = 1; q <= tableRowCnt;q++)
+								{
+		
+									//#srch > table.mctable > tbody > tr:nth-child(2) > td:nth-child(1) > a
+									//#srch > table.mctable > tbody > tr > td:nth-child(1) > a
+									let row = '#srch > table.mctable > tbody > tr:nth-child(_INDEX) > td:nth-child(1) > a';
+									let index = '';
+									if(tableRowCnt == 1)
+									{
+										row = '#srch > table.mctable > tbody > tr > td:nth-child(_INDEX) > a';
+										index = row.replace('_INDEX',q);
+									}
+									else
+									{
+										index = row.replace('_INDEX',q);
+									}
+		
+									// console.log(index);
+									try
+									{
+										 if(tableRowCnt > 0)
+										 {
+		
+											// await page.click('#ctl00_cphMain_gvParcels_ctl02_lView');
+											// await page.focus(index);
+											await page.click(index);
+											await page.waitFor(2000);
+										}
+									
+									}
+									catch(error3)
+									{
+										//console.log(error3);
+										//await page.waitFor(500);
+										try
+										{
+											//console.log("Error");
+											// await page.focus('#txtPropertySearch_Owner');
+											// await page.keyboard.down('Control');
+											// await page.keyboard.press('KeyA');
+											// await page.keyboard.up('Control');
+											// await page.keyboard.press('Backspace');
+											// await page.focus('#txtPropertySearch_Owner');
+										}
+										catch(error8)
+										{
+		
+										}
+									}                             
+									
+									let prop_description = await page.evaluate((sel) => {
+										let element = document.querySelector(sel);
+										return element? element.outerHTML:'';
+										}, '#prc > table > tbody > tr > td');
+		
+										let	ownerParts;
+										let	mailingAddressParts;
+										let	propertyAddressParts = [];
+										propertyAddressParts.push(0);
+										propertyAddressParts.push(0);
+										let propertyAddress;
+										
+										// console.log(prop_description4);
+										
+										// let propFullDesx = prop_description.split('<br>');
+		
+										//console.log(propFullDesx[0]+propFullDesx[1]+propFullDesx[2]+propFullDesx[3]);
+										// console.log(propFullDesx[0]);
+										// console.log(propFullDesx[1]);
+										// console.log(propFullDesx[2]);
+										// console.log(propFullDesx[3]);
+										// console.log(propFullDesx[4]);
+										// console.log(propFullDesx[5]);
+										// console.log(propFullDesx[6]);
+										// console.log(propFullDesx[7]);
+										// console.log(propFullDesx[8]);
+										// console.log(propFullDesx[9]);
+										// console.log(propFullDesx[10]);
+										// console.log(propFullDesx[11]);
+										// console.log(propFullDesx[12]);
+										// console.log(propFullDesx[13]);
+										// console.log(propFullDesx[14]);
+										// console.log(propFullDesx[15]);
+										// console.log(propFullDesx[16]);
+										// console.log(propFullDesx[17]);
+										// console.log(propFullDesx[18]);
+										// console.log(propFullDesx[19]);
+		
+		
+										if(prop_description.includes(item.lot_number))
+										{
+											// let ownerNameSelector = '#content > div.property_section_info > table > tbody > tr:nth-child(1) > td:nth-child(2)'
+											// let ownerName = await page2.evaluate((sel) => {
+											// 	let element = document.querySelector(sel);
+											// 	return element? element.innerHTML:'';
+											// 	}, ownerNameSelector);
+											// ownerParts = ownerName.split(' ');
+											//console.log(ownerParts[1] +' '+ ownerParts[0]);
+		
+											let mailingAddressSelector = '#prc > table > tbody > tr > td > table:nth-child(9) > tbody > tr > td:nth-child(3)'
+											let mailingAddress = await page.evaluate((sel) => {
+												let element = document.querySelector(sel);
+												return element? element.innerHTML:'';
+												}, mailingAddressSelector);
+											mailingAddressParts = mailingAddress.split('Situs:');
+											// console.log(mailingAddress);
+											//console.log(mailingAddressParts[0]+ ' ' + mailingAddressParts[1]);
+		
+											let propertyAddressSelector = '#prc > table > tbody > tr > td > table:nth-child(9) > tbody > tr > td:nth-child(1)'
+											propertyAddress = await page.evaluate((sel) => {
+												let element = document.querySelector(sel);
+												return element? element.innerHTML:'';
+												}, propertyAddressSelector);
+											// console.log(propertyAddress);
+											propertyAddressParts = propertyAddress.split('<br>');
+											//console.log(propertyAddressParts[0]+ ' ' + propertyAddressParts[1]);
+										
+		
+												let NameSpliter = item.name.split(' ');
+												let OwnerFirstLast = NameSpliter[1] + ' ' + NameSpliter[0];//item.firstname + ' ' + item.lastname;
+												let OwnerProperty = '';
+												let OwnerMailing = '';
+		
+												if(propertyAddress != '')
+												{
+													if(propertyAddressParts.length == 3)
+													{
+														OwnerProperty = propertyAddressParts[1] +' '+ propertyAddressParts[2];
+													}
+													else if(propertyAddressParts.length == 4)
+													{
+														OwnerProperty = propertyAddressParts[2] +' '+ propertyAddressParts[3];
+													}
+													else
+													{
+														OwnerProperty = propertyAddress;
+													}
+													//Parts[0]+ ' ' + propertyAddressParts[1];
+												}
+												if(mailingAddress != '')
+												{
+													OwnerMailing = mailingAddressParts[1];// + mailingAddressParts[1];
+												}
+		
+												var data = [OwnerFirstLast,OwnerProperty];
+												var dataInserted;
+		
+												//console.log(data);
+												
+												// request = new Request("INSERT INTO LakeCountyProperties with (ROWLOCK) ([Ownername], [Address]) SELECT '"+ data[0].toString()+ "', '"+ OwnerMailing.toString()+ "' WHERE NOT EXISTS (SELECT * FROM dbo.LakeCountyProperties WHERE Address = '"+OwnerMailing.toString() +"');",
+												// function(err,rowCount)
+												// {
+												// if(err)
+												// {
+												// 	console.log(err);
+												// 	}
+												// 	//console.log(rowCount + ' row(s) returned');
+												// 	dataInserted = rowCount;
+												// });
+												// await connection.execSql(request);
+										
+												// if(dataInserted > 0)
+												// {
+													var json = {'ownername':data[0],'propertyaddress':OwnerMailing,'mailingaddress':data[1]};
+													console.log(json);
+													propertyData.push(json);
+													podioJson =  {"fields":{"title":data[0],"lead-source":"Marion County","lead-intake-date":intakeDate,"motivation":7,"status-of-lead":14,"next-action":15,"property-address":OwnerMailing,"owners-address":data[1],"estimated-value":{"value":"0","currency":"USD"},"beds-2":"0","baths-2":"0","square-feet":0,"year-built-2":"0","property-taxes-assement":"0","last-sale-price":"0"}};
+													// insertPODIOItem(podioJson);
+													MarionCnt++;
+													//tempData.push(tempdatajson);
+		
+												// }
+												// else
+												// {
+												// 	var json = {'ownername':data[0],'propertyaddress':data[1],'mailingaddress':OwnerMailing};
+												// 	nomatchPropertyData.push(json);
+												// }
+												// await request.on('done', function (rowCount, more, rows) {
+												// 	dataInserted = rowCount;
+												// });
+											}   
+		
+										//await page.waitFor(500);
+									   
+										if(tableRowCnt == q)
+										{
+											await page.goBack();
+											await page.waitFor(1000);
+											// await page.goBack();
+											// await page.waitFor(1000);
+											await page.focus('#MCPAMaster_MCPAContent_txtParm');
+											await page.keyboard.down('Control');
+											await page.keyboard.press('KeyA');
+											await page.keyboard.up('Control');
+											await page.keyboard.press('Backspace');
+											await page.focus('#MCPAMaster_MCPAContent_txtParm');
+										}
+										else
+										{
+											await page.goBack();
+											await page.waitFor(1000);
+										}
+									   
+								}
+		
+						}
+					}
+			}
+			catch(error5)
+			{
+				await page.screenshot({path: 'errorData.jpg', fullPage: true});
+				await sendErrorEmail();
+				console.log(error5);
+		
+			}
+
+		console.log("Marion Finished with "+ MarionCnt);
+	    // console.log("Started Marion Names");
 
 	var fileName = 'Names ' + dateFirstDayStringFile + ' to ' + dateStringFile + ' LP.csv';
 	var fileName2 = 'Properties ' + dateFirstDayStringFile + ' to ' + dateStringFile + ' LP.csv';
@@ -1844,10 +2806,10 @@ var smtpTransport = nodemailer.createTransport({
 
 	var mailOptions = {
 	  from: process.env.GMAIL_USERNAME,
-	  to: "Kornarmy@gmail.com, mfilson148@gmail.com",
-	  subject: "Lake County and Brevard LP Mailer list No Results",
+	  to: "Kornarmy@gmail.com",//, mfilson148@gmail.com",
+	  subject: "Lake, Brevard, and Marion LP Mailer list No Results",
 	  generateTextFromHTML: true,
-	  html: "<b>Lake County and Brevard Found zero results today.</b>",
+	  html: "<b>Lake, Brevard, and Marion Found zero results today.</b>",
 	  //attachments: [{   filename: 'Testfile.csv',// file on disk as an attachment
 		//				content: thecsv
 		//			}]
@@ -1905,11 +2867,11 @@ var smtpTransport = nodemailer.createTransport({
 
 var mailOptions = {
   from: process.env.GMAIL_USERNAME,
-  to: "Kornarmy@gmail.com, mfilson148@gmail.com, list@divlink.com",
+  to: "Kornarmy@gmail.com",//, mfilson148@gmail.com, list@divlink.com",
   //, list@divlink.com",
-  subject: "Lake and Brevard LP",
+  subject: "Lake, Brevard, and Marion LP",
   generateTextFromHTML: true,
-  html: "<b>Lake County and Brevard County LIS PENDENS From the machines!</b>",
+  html: "<b>Lake, Brevard, and Marion LIS PENDENS From the machines!</b>",
   attachments: [{   filename: fileName,// file on disk as an attachment
 					content: csvNames }
 				,{filename: fileName2,
@@ -1975,7 +2937,7 @@ var smtpTransport = nodemailer.createTransport({
 var mailOptions = {
   from: process.env.GMAIL_USERNAME,
   to: "Kornarmy@gmail.com",
-  subject: "Lake County Direct Error",
+  subject: "Direct Error",
   generateTextFromHTML: false,
   text: "Error screenshot\n",
   attachments: [{path : (path.resolve(__dirname,'errorData.jpg'))
