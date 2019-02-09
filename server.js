@@ -2217,7 +2217,7 @@ catch(brevardError)
 									{
 											var name = {'name':grantessList[e],'full_legal':legal_result,'lot_number':lotNumber,'county':'marion'};
 											marionNamesData.push(name);
-											var nameBigList = {'firstname':'','lastname':grantessList[e],'full_legal':legal_result,'lot_number':lotNumber,'county':'marion'};
+											var nameBigList = {'firstname':'','lastname':grantessList[e],'lot_number':lotNumber,'county':'marion','full_legal':legal_result};
 											namesData.push(nameBigList);
 											// console.log(name);
 										break;
@@ -2481,37 +2481,37 @@ catch(brevardError)
 		
 												//console.log(data);
 												
-												// request = new Request("INSERT INTO LakeCountyProperties with (ROWLOCK) ([Ownername], [Address]) SELECT '"+ data[0].toString()+ "', '"+ OwnerMailing.toString()+ "' WHERE NOT EXISTS (SELECT * FROM dbo.LakeCountyProperties WHERE Address = '"+OwnerMailing.toString() +"');",
-												// function(err,rowCount)
-												// {
-												// if(err)
-												// {
-												// 	console.log(err);
-												// 	}
-												// 	//console.log(rowCount + ' row(s) returned');
-												// 	dataInserted = rowCount;
-												// });
-												// await connection.execSql(request);
+												request = new Request("INSERT INTO LakeCountyProperties with (ROWLOCK) ([Ownername], [Address]) SELECT '"+ data[0].toString()+ "', '"+ OwnerMailing.toString()+ "' WHERE NOT EXISTS (SELECT * FROM dbo.LakeCountyProperties WHERE Address = '"+OwnerMailing.toString() +"');",
+												function(err,rowCount)
+												{
+												if(err)
+												{
+													console.log(err);
+													}
+													//console.log(rowCount + ' row(s) returned');
+													dataInserted = rowCount;
+												});
+												await connection.execSql(request);
 										
-												// if(dataInserted > 0)
-												// {
+												if(dataInserted > 0)
+												{
 													var json = {'ownername':data[0],'propertyaddress':OwnerMailing,'mailingaddress':data[1]};
 													console.log(json);
 													propertyData.push(json);
 													podioJson =  {"fields":{"title":data[0],"lead-source":"Marion County","lead-intake-date":intakeDate,"motivation":7,"status-of-lead":14,"next-action":15,"property-address":OwnerMailing,"owners-address":data[1],"estimated-value":{"value":"0","currency":"USD"},"beds-2":"0","baths-2":"0","square-feet":0,"year-built-2":"0","property-taxes-assement":"0","last-sale-price":"0"}};
-													// insertPODIOItem(podioJson);
+													insertPODIOItem(podioJson);
 													MarionCnt++;
 													//tempData.push(tempdatajson);
 		
-												// }
+												}
 												// else
 												// {
 												// 	var json = {'ownername':data[0],'propertyaddress':data[1],'mailingaddress':OwnerMailing};
 												// 	nomatchPropertyData.push(json);
 												// }
-												// await request.on('done', function (rowCount, more, rows) {
-												// 	dataInserted = rowCount;
-												// });
+												await request.on('done', function (rowCount, more, rows) {
+													dataInserted = rowCount;
+												});
 											}   
 		
 										//await page.waitFor(500);
@@ -2806,7 +2806,7 @@ var smtpTransport = nodemailer.createTransport({
 
 	var mailOptions = {
 	  from: process.env.GMAIL_USERNAME,
-	  to: "Kornarmy@gmail.com",//, mfilson148@gmail.com",
+	  to: "Kornarmy@gmail.com, mfilson148@gmail.com",
 	  subject: "Lake, Brevard, and Marion LP Mailer list No Results",
 	  generateTextFromHTML: true,
 	  html: "<b>Lake, Brevard, and Marion Found zero results today.</b>",
@@ -2867,7 +2867,7 @@ var smtpTransport = nodemailer.createTransport({
 
 var mailOptions = {
   from: process.env.GMAIL_USERNAME,
-  to: "Kornarmy@gmail.com",//, mfilson148@gmail.com, list@divlink.com",
+  to: "Kornarmy@gmail.com, mfilson148@gmail.com, list@divlink.com",
   //, list@divlink.com",
   subject: "Lake, Brevard, and Marion LP",
   generateTextFromHTML: true,
