@@ -2185,7 +2185,7 @@ catch(brevardError)
 									{
 										
 									}
-									else if(grantessList[e] == 'UNITED STATES OF AMERICA')
+									else if(grantessList[e].includes('UNITED STATES OF AMERICA'))
 									{
 		
 									}
@@ -2210,6 +2210,14 @@ catch(brevardError)
 		
 									}
 									else if(granteeList[e].includes('PAYPAL'))
+									{
+		
+									}
+									else if(granteeList[e] == 'R JEAN')
+									{
+		
+									}
+									else if(granteeList[e] == 'PNC BANK N A')
 									{
 		
 									}
@@ -2281,7 +2289,7 @@ catch(brevardError)
 							await page.focus('#MCPAMaster_MCPAContent_txtParm');
 							await page.keyboard.type(item.name);
 							await page.click('#MCPAMaster_MCPAContent_btnWine');
-							await page.waitFor(1000);
+							await page.waitFor(1500);
 		
 		
 							
@@ -2453,7 +2461,7 @@ catch(brevardError)
 												let NameSpliter = item.name.split(' ');
 												let OwnerFirstLast = NameSpliter[1] + ' ' + NameSpliter[0];//item.firstname + ' ' + item.lastname;
 												let OwnerProperty = '';
-												let OwnerMailing = '';
+												let OwnerMailing = 'N/A';
 		
 												if(propertyAddress != '')
 												{
@@ -2471,7 +2479,7 @@ catch(brevardError)
 													}
 													//Parts[0]+ ' ' + propertyAddressParts[1];
 												}
-												if(mailingAddress != '')
+												if(mailingAddress != '' && mailingAddressParts.length > 1)
 												{
 													OwnerMailing = mailingAddressParts[1];// + mailingAddressParts[1];
 												}
